@@ -1,3 +1,4 @@
+import csv
 import html
 import json
 import sqlite3
@@ -8,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DB_PATH = ROOT / "epioxa-clinics-monitor.db"
 OUT_PATH = ROOT / "epioxa-dashboard.html"
+ASSET_WEEKLY_PATH = ROOT / "epioxa-buildout-by-week-asset-proxy.csv"
 
 
 def parse_dt(value):
@@ -31,6 +33,41 @@ def week_start(value):
 def run_query(conn, sql, params=()):
     conn.row_factory = sqlite3.Row
     return [dict(row) for row in conn.execute(sql, params).fetchall()]
+
+
+def int_value(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return 0
+
+
+def load_asset_weekly_estimates():
+    if not ASSET_WEEKLY_PATH.exists():
+        return []
+
+    rows = []
+    with ASSET_WEEKLY_PATH.open(newline="", encoding="utf-8-sig") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            week = row.get("Week starting", "")
+            if not week:
+                continue
+            added = int_value(row.get("Facilities with first asset created"))
+            rows.append(
+                {
+                    "week_starting": week,
+                    "clinics_added": added,
+                    "treatment_centers": int_value(row.get("Treatment centers")),
+                    "detection_centers": int_value(row.get("Detection centers")),
+                    "both_center_types": int_value(row.get("Both")),
+                    "source": "Estimate",
+                    "source_detail": "Clinic photo added date",
+                    "is_estimate": True,
+                    "cumulative_buildout": 0,
+                }
+            )
+    return rows
 
 
 def load_dashboard_data():
@@ -92,6 +129,9 @@ def load_dashboard_data():
                 "week_starting": wk,
                 "baseline_added": 0,
                 "new_after_baseline": 0,
+                "new_treatment_centers": 0,
+                "new_detection_centers": 0,
+                "new_both_center_types": 0,
                 "total_added": 0,
                 "cumulative_tracked": 0,
             },
@@ -101,6 +141,12 @@ def load_dashboard_data():
             row["baseline_added"] += 1
         else:
             row["new_after_baseline"] += 1
+            if facility["is_treatment_center"]:
+                row["new_treatment_centers"] += 1
+            if facility["is_detection_center"]:
+                row["new_detection_centers"] += 1
+            if facility["is_treatment_center"] and facility["is_detection_center"]:
+                row["new_both_center_types"] += 1
 
     cumulative = 0
     weekly = []
@@ -108,6 +154,33 @@ def load_dashboard_data():
         cumulative += weekly_map[wk]["total_added"]
         weekly_map[wk]["cumulative_tracked"] = cumulative
         weekly.append(weekly_map[wk])
+
+    official_weeks = [
+        {
+            "week_starting": row["week_starting"],
+            "clinics_added": row["new_after_baseline"],
+            "treatment_centers": row["new_treatment_centers"],
+            "detection_centers": row["new_detection_centers"],
+            "both_center_types": row["new_both_center_types"],
+            "source": "Official",
+            "source_detail": "Tracker first-seen date",
+            "is_estimate": False,
+            "cumulative_buildout": 0,
+        }
+        for row in weekly
+        if row["new_after_baseline"] > 0
+    ]
+    first_official_week = min((row["week_starting"] for row in official_weeks), default="")
+    estimated_weeks = load_asset_weekly_estimates()
+    if first_official_week:
+        estimated_weeks = [row for row in estimated_weeks if row["week_starting"] < first_official_week]
+
+    cumulative_buildout = 0
+    weekly_buildout = []
+    for row in sorted(estimated_weeks + official_weeks, key=lambda item: item["week_starting"]):
+        cumulative_buildout += row["clinics_added"]
+        row["cumulative_buildout"] = cumulative_buildout
+        weekly_buildout.append(row)
 
     latest_run_at = latest_run["run_at"] if latest_run else ""
     current_facilities = [f for f in facilities if f["currently_live"]]
@@ -136,6 +209,7 @@ def load_dashboard_data():
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "summary": summary,
         "weekly": weekly,
+        "weekly_buildout": weekly_buildout,
         "runs": runs,
         "facilities": facilities,
     }
@@ -280,10 +354,31 @@ def render_dashboard(data):
     }}
     tbody tr:hover {{ background: #fbfdff; }}
     .summary-table th:first-child, .summary-table td:first-child {{ width: 34%; }}
+    .weekly-note {{
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      background: #fbfdff;
+    }}
     .weekly-wrap {{
       display: grid;
       grid-template-columns: minmax(0, 1fr) 260px;
       gap: 0;
+    }}
+    .estimate-row td {{
+      font-style: italic;
+      color: #52606d;
+    }}
+    .basis {{
+      font-weight: 700;
+    }}
+    .estimate-row .basis {{
+      font-style: italic;
+      color: var(--amber);
+    }}
+    .official-row .basis {{
+      color: var(--teal);
     }}
     .weekly-chart {{
       border-left: 1px solid var(--line);
@@ -309,6 +404,9 @@ def render_dashboard(data):
     .bar-fill {{
       height: 100%;
       background: var(--blue);
+    }}
+    .bar-fill.estimated {{
+      background: #8793a0;
     }}
     .controls {{
       padding: 12px 16px;
@@ -418,7 +516,10 @@ def render_dashboard(data):
     <section>
       <div class="section-head">
         <h2>Clinics Added By Week</h2>
-        <span class="subtle">Based on first-seen date in this monitor</span>
+        <span class="subtle">Estimate rows before tracker launch; official rows after</span>
+      </div>
+      <div class="weekly-note">
+        <em>Estimated rows use each clinic's first detected clinic-photo added date as a proxy for when that location came online, and only include clinics with a usable photo date. Official rows use this dashboard's tracker first-seen date after the database was created.</em>
       </div>
       <div class="weekly-wrap">
         <div class="table-scroll" style="max-height: 360px;">
@@ -426,10 +527,12 @@ def render_dashboard(data):
             <thead>
               <tr>
                 <th>Week Starting</th>
-                <th>Baseline Added</th>
-                <th>New After Baseline</th>
-                <th>Total Added</th>
-                <th>Cumulative Tracked</th>
+                <th>Clinics Added</th>
+                <th>Treatment</th>
+                <th>Detection</th>
+                <th>Both</th>
+                <th>Basis</th>
+                <th>Cumulative In Timeline</th>
               </tr>
             </thead>
             <tbody id="weeklyTable"></tbody>
@@ -570,22 +673,25 @@ def render_dashboard(data):
       <tr><td>${{esc(label)}}</td><td>${{fmt(value)}}</td><td>${{esc(note)}}</td></tr>
     `).join('');
 
-    document.getElementById('weeklyTable').innerHTML = data.weekly.map(row => `
-      <tr>
+    const weeklyBuildout = data.weekly_buildout || [];
+    document.getElementById('weeklyTable').innerHTML = weeklyBuildout.map(row => `
+      <tr class="${{row.is_estimate ? 'estimate-row' : 'official-row'}}">
         <td>${{esc(row.week_starting)}}</td>
-        <td>${{fmt(row.baseline_added)}}</td>
-        <td>${{fmt(row.new_after_baseline)}}</td>
-        <td>${{fmt(row.total_added)}}</td>
-        <td>${{fmt(row.cumulative_tracked)}}</td>
+        <td>${{fmt(row.clinics_added)}}</td>
+        <td>${{fmt(row.treatment_centers)}}</td>
+        <td>${{fmt(row.detection_centers)}}</td>
+        <td>${{fmt(row.both_center_types)}}</td>
+        <td><span class="basis">${{esc(row.source)}}</span><br><span class="subtle">${{esc(row.source_detail)}}</span></td>
+        <td>${{fmt(row.cumulative_buildout)}}</td>
       </tr>
     `).join('');
 
-    const maxWeekly = Math.max(1, ...data.weekly.map(row => row.total_added));
-    document.getElementById('weeklyChart').innerHTML = data.weekly.map(row => `
+    const maxWeekly = Math.max(1, ...weeklyBuildout.map(row => row.clinics_added));
+    document.getElementById('weeklyChart').innerHTML = weeklyBuildout.map(row => `
       <div class="bar-row">
-        <span>${{esc(row.week_starting)}}</span>
-        <span class="bar-track"><span class="bar-fill" style="width: ${{Math.max(4, Math.round(row.total_added / maxWeekly * 100))}}%"></span></span>
-        <strong>${{fmt(row.total_added)}}</strong>
+        <span>${{esc(row.week_starting)}}${{row.is_estimate ? ' est.' : ''}}</span>
+        <span class="bar-track"><span class="bar-fill ${{row.is_estimate ? 'estimated' : ''}}" style="width: ${{Math.max(4, Math.round(row.clinics_added / maxWeekly * 100))}}%"></span></span>
+        <strong>${{fmt(row.clinics_added)}}</strong>
       </div>
     `).join('');
 

@@ -1,0 +1,665 @@
+import html
+import json
+import sqlite3
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent
+DB_PATH = ROOT / "epioxa-clinics-monitor.db"
+OUT_PATH = ROOT / "epioxa-dashboard.html"
+
+
+def parse_dt(value):
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def week_start(value):
+    dt = parse_dt(value)
+    if not dt:
+        return ""
+    dt = dt.astimezone(timezone.utc)
+    monday = dt - timedelta(days=dt.weekday())
+    return monday.date().isoformat()
+
+
+def run_query(conn, sql, params=()):
+    conn.row_factory = sqlite3.Row
+    return [dict(row) for row in conn.execute(sql, params).fetchall()]
+
+
+def load_dashboard_data():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    latest_run = conn.execute(
+        "SELECT id, run_at, total_facilities, new_facilities, status FROM runs WHERE status IN ('complete', 'baseline') ORDER BY id DESC LIMIT 1"
+    ).fetchone()
+    latest_run_id = latest_run["id"] if latest_run else None
+
+    latest_seen_ids = set()
+    if latest_run_id:
+        latest_seen_ids = {
+            row["facility_id"]
+            for row in conn.execute(
+                "SELECT DISTINCT facility_id FROM observations WHERE run_id = ?", (latest_run_id,)
+            )
+        }
+
+    facilities = run_query(
+        conn,
+        """
+        SELECT id, name, address, city, state, zip, is_treatment_center,
+               is_detection_center, phone, website, providers, first_seen_at,
+               first_seen_run_id, last_seen_at, last_seen_run_id
+        FROM facilities
+        ORDER BY lower(name), lower(city), lower(state)
+        """,
+    )
+    for facility in facilities:
+        facility["currently_live"] = facility["id"] in latest_seen_ids
+        facility["center_type"] = (
+            "Treatment + Detection"
+            if facility["is_treatment_center"] and facility["is_detection_center"]
+            else "Treatment"
+            if facility["is_treatment_center"]
+            else "Detection"
+            if facility["is_detection_center"]
+            else ""
+        )
+
+    runs = run_query(
+        conn,
+        """
+        SELECT id, run_at, total_facilities, new_facilities, status, notes
+        FROM runs
+        ORDER BY id
+        """,
+    )
+
+    weekly_map = {}
+    for facility in facilities:
+        wk = week_start(facility["first_seen_at"])
+        if not wk:
+            continue
+        row = weekly_map.setdefault(
+            wk,
+            {
+                "week_starting": wk,
+                "baseline_added": 0,
+                "new_after_baseline": 0,
+                "total_added": 0,
+                "cumulative_tracked": 0,
+            },
+        )
+        row["total_added"] += 1
+        if facility["first_seen_run_id"] == 1:
+            row["baseline_added"] += 1
+        else:
+            row["new_after_baseline"] += 1
+
+    cumulative = 0
+    weekly = []
+    for wk in sorted(weekly_map):
+        cumulative += weekly_map[wk]["total_added"]
+        weekly_map[wk]["cumulative_tracked"] = cumulative
+        weekly.append(weekly_map[wk])
+
+    latest_run_at = latest_run["run_at"] if latest_run else ""
+    current_facilities = [f for f in facilities if f["currently_live"]]
+    summary = {
+        "last_run": latest_run_at,
+        "currently_live_latest_pull": len(latest_seen_ids),
+        "total_tracked_historically": len(facilities),
+        "new_this_run": latest_run["new_facilities"] if latest_run else 0,
+        "new_since_baseline": sum(1 for f in facilities if f["first_seen_run_id"] != 1),
+        "not_seen_latest_pull": sum(1 for f in facilities if not f["currently_live"]),
+        "treatment_centers": sum(1 for f in facilities if f["is_treatment_center"]),
+        "detection_centers": sum(1 for f in facilities if f["is_detection_center"]),
+        "both_center_types": sum(
+            1 for f in facilities if f["is_treatment_center"] and f["is_detection_center"]
+        ),
+        "current_treatment_centers": sum(1 for f in current_facilities if f["is_treatment_center"]),
+        "current_detection_centers": sum(1 for f in current_facilities if f["is_detection_center"]),
+        "current_both_center_types": sum(
+            1 for f in current_facilities if f["is_treatment_center"] and f["is_detection_center"]
+        ),
+    }
+
+    return {
+        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "summary": summary,
+        "weekly": weekly,
+        "runs": runs,
+        "facilities": facilities,
+    }
+
+
+def render_dashboard(data):
+    payload = json.dumps(data, separators=(",", ":"))
+    generated = html.escape(data["generated_at"])
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Epioxa Clinic Buildout Dashboard</title>
+  <style>
+    :root {{
+      color-scheme: light;
+      --ink: #17202a;
+      --muted: #5a6675;
+      --line: #d8dde5;
+      --panel: #ffffff;
+      --surface: #f4f7f8;
+      --teal: #0f766e;
+      --blue: #2458a6;
+      --rose: #b31365;
+      --amber: #9a5b00;
+      --green-bg: #e6f4ef;
+      --blue-bg: #e9f0fb;
+      --rose-bg: #f9e8f1;
+      --amber-bg: #fff3db;
+    }}
+    * {{ box-sizing: border-box; }}
+    body {{
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.35;
+    }}
+    header {{
+      padding: 22px 28px 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }}
+    h1 {{
+      margin: 0 0 4px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }}
+    .subtle {{ color: var(--muted); }}
+    .top-status {{
+      text-align: right;
+      display: grid;
+      gap: 5px;
+      min-width: 250px;
+    }}
+    .top-status .label {{
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }}
+    .top-status .time {{
+      font-size: 17px;
+      font-weight: 700;
+    }}
+    .top-status .source {{
+      color: var(--muted);
+      font-size: 12px;
+    }}
+    main {{
+      padding: 20px 28px 28px;
+      display: grid;
+      gap: 18px;
+    }}
+    section {{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }}
+    .section-head {{
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }}
+    h2 {{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0;
+    }}
+    .summary-grid {{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(140px, 1fr));
+      border-bottom: 1px solid var(--line);
+    }}
+    .metric {{
+      padding: 14px 16px;
+      border-right: 1px solid var(--line);
+      min-height: 82px;
+    }}
+    .metric:last-child {{ border-right: 0; }}
+    .metric .value {{
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      letter-spacing: 0;
+    }}
+    .metric .label {{ color: var(--muted); }}
+    table {{
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+    }}
+    th, td {{
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      overflow-wrap: anywhere;
+    }}
+    th {{
+      background: #f7fafb;
+      color: #364252;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }}
+    tbody tr:hover {{ background: #fbfdff; }}
+    .summary-table th:first-child, .summary-table td:first-child {{ width: 34%; }}
+    .weekly-wrap {{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 0;
+    }}
+    .weekly-chart {{
+      border-left: 1px solid var(--line);
+      padding: 14px 14px 10px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }}
+    .bar-row {{
+      display: grid;
+      grid-template-columns: 76px 1fr 34px;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }}
+    .bar-track {{
+      height: 10px;
+      background: #e7ecef;
+      border-radius: 999px;
+      overflow: hidden;
+    }}
+    .bar-fill {{
+      height: 100%;
+      background: var(--blue);
+    }}
+    .controls {{
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) 170px 150px 150px;
+      gap: 10px;
+      align-items: center;
+    }}
+    input, select {{
+      width: 100%;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 9px 10px;
+      font: inherit;
+    }}
+    .table-scroll {{
+      max-height: 62vh;
+      overflow: auto;
+    }}
+    .clinics-table th:nth-child(1) {{ width: 230px; }}
+    .clinics-table th:nth-child(2) {{ width: 260px; }}
+    .clinics-table th:nth-child(3) {{ width: 120px; }}
+    .clinics-table th:nth-child(4) {{ width: 70px; }}
+    .clinics-table th:nth-child(5) {{ width: 90px; }}
+    .clinics-table th:nth-child(6) {{ width: 120px; }}
+    .clinics-table th:nth-child(7) {{ width: 120px; }}
+    .clinics-table th:nth-child(8) {{ width: 120px; }}
+    .clinics-table th:nth-child(9) {{ width: 190px; }}
+    .clinics-table th:nth-child(10) {{ width: 190px; }}
+    .clinics-table th:nth-child(11) {{ width: 135px; }}
+    .clinics-table th:nth-child(12) {{ width: 180px; }}
+    .clinics-table th:nth-child(13) {{ width: 300px; }}
+    .clinics-table th:nth-child(14) {{ width: 260px; }}
+    .new-clinics-table th:nth-child(1) {{ width: 150px; }}
+    .new-clinics-table th:nth-child(2) {{ width: 230px; }}
+    .new-clinics-table th:nth-child(3) {{ width: 260px; }}
+    .new-clinics-table th:nth-child(4) {{ width: 120px; }}
+    .new-clinics-table th:nth-child(5) {{ width: 70px; }}
+    .new-clinics-table th:nth-child(6) {{ width: 90px; }}
+    .new-clinics-table th:nth-child(7) {{ width: 120px; }}
+    .new-clinics-table th:nth-child(8) {{ width: 120px; }}
+    .new-clinics-table th:nth-child(9) {{ width: 135px; }}
+    .new-clinics-table th:nth-child(10) {{ width: 180px; }}
+    .new-clinics-table th:nth-child(11) {{ width: 300px; }}
+    .new-clinics-table th:nth-child(12) {{ width: 260px; }}
+    .pill {{
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }}
+    .yes {{ background: var(--green-bg); color: var(--teal); }}
+    .no {{ background: #eef1f4; color: var(--muted); }}
+    .new {{ background: var(--rose-bg); color: var(--rose); }}
+    .warn {{ background: var(--amber-bg); color: var(--amber); }}
+    a {{ color: var(--blue); text-decoration: none; }}
+    a:hover {{ text-decoration: underline; }}
+    .footer-note {{
+      color: var(--muted);
+      font-size: 12px;
+      padding: 0 2px 6px;
+    }}
+    @media (max-width: 980px) {{
+      header {{ align-items: flex-start; flex-direction: column; }}
+      .summary-grid {{ grid-template-columns: repeat(2, minmax(140px, 1fr)); }}
+      .weekly-wrap {{ grid-template-columns: 1fr; }}
+      .weekly-chart {{ border-left: 0; border-top: 1px solid var(--line); }}
+      .controls {{ grid-template-columns: 1fr 1fr; }}
+    }}
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Epioxa Clinic Buildout Dashboard</h1>
+      <div class="subtle">Clinic buildout tracker generated from the local Epioxa monitor database</div>
+    </div>
+    <div class="top-status">
+      <div class="label">Latest monitor run</div>
+      <div class="time" id="topLastRun">Loading...</div>
+      <div class="source">Source: find-a-doctor.epioxa.com public finder/API</div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="section-head">
+        <h2>Summary</h2>
+        <span id="lastRun" class="subtle"></span>
+      </div>
+      <div class="summary-grid" id="summaryGrid"></div>
+      <table class="summary-table">
+        <thead>
+          <tr><th>Measure</th><th>Count</th><th>Plain English</th></tr>
+        </thead>
+        <tbody id="summaryTable"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>Clinics Added By Week</h2>
+        <span class="subtle">Based on first-seen date in this monitor</span>
+      </div>
+      <div class="weekly-wrap">
+        <div class="table-scroll" style="max-height: 360px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Week Starting</th>
+                <th>Baseline Added</th>
+                <th>New After Baseline</th>
+                <th>Total Added</th>
+                <th>Cumulative Tracked</th>
+              </tr>
+            </thead>
+            <tbody id="weeklyTable"></tbody>
+          </table>
+        </div>
+        <div class="weekly-chart" id="weeklyChart"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>New Clinics Added</h2>
+        <span id="newClinicCount" class="subtle"></span>
+      </div>
+      <div class="table-scroll" style="max-height: 430px;">
+        <table class="new-clinics-table">
+          <thead>
+            <tr>
+              <th>First Seen</th>
+              <th>Clinic</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip</th>
+              <th>Center Type</th>
+              <th>Currently Live</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Providers</th>
+              <th>Epioxa Facility ID</th>
+            </tr>
+          </thead>
+          <tbody id="newClinicTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h2>All Clinics</h2>
+        <span id="clinicCount" class="subtle"></span>
+      </div>
+      <div class="controls">
+        <input id="searchBox" type="search" placeholder="Search clinic, city, state, provider, website">
+        <select id="stateFilter"><option value="">All states</option></select>
+        <select id="typeFilter">
+          <option value="">All center types</option>
+          <option value="Treatment">Treatment</option>
+          <option value="Detection">Detection</option>
+          <option value="Treatment + Detection">Treatment + Detection</option>
+        </select>
+        <select id="liveFilter">
+          <option value="">All live statuses</option>
+          <option value="true">Currently live</option>
+          <option value="false">Not seen latest</option>
+        </select>
+      </div>
+      <div class="table-scroll">
+        <table class="clinics-table">
+          <thead>
+            <tr>
+              <th>Clinic</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip</th>
+              <th>Center Type</th>
+              <th>Currently Live</th>
+              <th>New Since Baseline</th>
+              <th>First Seen</th>
+              <th>Last Seen</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Providers</th>
+              <th>Epioxa Facility ID</th>
+            </tr>
+          </thead>
+          <tbody id="clinicTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      First seen by monitor is not an official go-live date. Baseline clinics were loaded from the original pull; later clinics are first observed by this local tracker.
+    </div>
+  </main>
+
+  <script id="dashboard-data" type="application/json">{payload}</script>
+  <script>
+    const data = JSON.parse(document.getElementById('dashboard-data').textContent);
+    const summary = data.summary;
+    const facilities = data.facilities;
+
+    const fmt = value => new Intl.NumberFormat().format(value ?? 0);
+    const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[ch]));
+    const shortDate = value => value ? String(value).slice(0, 10) : '';
+    const displayDateTime = value => {{
+      if (!value) return 'Not run yet';
+      const d = new Date(value);
+      if (Number.isNaN(d.valueOf())) return value;
+      return d.toLocaleString(undefined, {{
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        timeZoneName: 'short'
+      }});
+    }};
+    const boolPill = value => `<span class="pill ${{value ? 'yes' : 'no'}}">${{value ? 'Yes' : 'No'}}</span>`;
+
+    document.getElementById('topLastRun').textContent = displayDateTime(summary.last_run);
+    document.getElementById('lastRun').textContent = `Latest monitor run: ${{displayDateTime(summary.last_run)}}`;
+
+    const metrics = [
+      ['New this run', summary.new_this_run, 'new'],
+      ['New since baseline', summary.new_since_baseline, 'new'],
+      ['Currently live', summary.currently_live_latest_pull, 'yes'],
+      ['Not seen latest pull', summary.not_seen_latest_pull, 'warn']
+    ];
+    document.getElementById('summaryGrid').innerHTML = metrics.map(([label, value, cls]) => `
+      <div class="metric">
+        <div class="value">${{fmt(value)}}</div>
+        <div class="label">${{esc(label)}}</div>
+      </div>
+    `).join('');
+
+    const summaryRows = [
+      ['New clinics added this run', summary.new_this_run, 'Clinics whose facility ID first appeared in the latest monitor run.'],
+      ['New clinics since baseline', summary.new_since_baseline, 'Clinics not present in the original 398-clinic baseline.'],
+      ['Currently live in latest pull', summary.currently_live_latest_pull, 'Clinics returned by the most recent nationwide Epioxa pull.'],
+      ['Previously tracked but not seen latest', summary.not_seen_latest_pull, 'Clinics in the database that did not appear in the latest pull.'],
+      ['Current live treatment centers', summary.current_treatment_centers, 'Currently live clinics marked as treatment centers.'],
+      ['Current live detection centers', summary.current_detection_centers, 'Currently live clinics marked as detection centers.'],
+      ['Current live both treatment and detection', summary.current_both_center_types, 'Overlap count. Current live math: treatment + detection - both = unique live clinics.']
+    ];
+    document.getElementById('summaryTable').innerHTML = summaryRows.map(([label, value, note]) => `
+      <tr><td>${{esc(label)}}</td><td>${{fmt(value)}}</td><td>${{esc(note)}}</td></tr>
+    `).join('');
+
+    document.getElementById('weeklyTable').innerHTML = data.weekly.map(row => `
+      <tr>
+        <td>${{esc(row.week_starting)}}</td>
+        <td>${{fmt(row.baseline_added)}}</td>
+        <td>${{fmt(row.new_after_baseline)}}</td>
+        <td>${{fmt(row.total_added)}}</td>
+        <td>${{fmt(row.cumulative_tracked)}}</td>
+      </tr>
+    `).join('');
+
+    const maxWeekly = Math.max(1, ...data.weekly.map(row => row.total_added));
+    document.getElementById('weeklyChart').innerHTML = data.weekly.map(row => `
+      <div class="bar-row">
+        <span>${{esc(row.week_starting)}}</span>
+        <span class="bar-track"><span class="bar-fill" style="width: ${{Math.max(4, Math.round(row.total_added / maxWeekly * 100))}}%"></span></span>
+        <strong>${{fmt(row.total_added)}}</strong>
+      </div>
+    `).join('');
+
+    const newClinics = facilities
+      .filter(f => f.first_seen_run_id !== 1)
+      .sort((a, b) => String(b.first_seen_at).localeCompare(String(a.first_seen_at)) || String(a.name).localeCompare(String(b.name)));
+    document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics not in the original baseline`;
+    document.getElementById('newClinicTable').innerHTML = newClinics.map(f => `
+      <tr>
+        <td>${{esc(displayDateTime(f.first_seen_at))}}</td>
+        <td>${{esc(f.name)}}</td>
+        <td>${{esc(f.address)}}</td>
+        <td>${{esc(f.city)}}</td>
+        <td>${{esc(f.state)}}</td>
+        <td>${{esc(f.zip)}}</td>
+        <td>${{esc(f.center_type)}}</td>
+        <td>${{boolPill(f.currently_live)}}</td>
+        <td>${{esc(f.phone)}}</td>
+        <td>${{f.website ? `<a href="${{esc(f.website.startsWith('http') ? f.website : 'https://' + f.website)}}" target="_blank" rel="noreferrer">${{esc(f.website)}}</a>` : ''}}</td>
+        <td>${{esc(f.providers)}}</td>
+        <td>${{esc(f.id)}}</td>
+      </tr>
+    `).join('');
+
+    const states = [...new Set(facilities.map(f => f.state).filter(Boolean))].sort();
+    document.getElementById('stateFilter').innerHTML += states.map(state => `<option value="${{esc(state)}}">${{esc(state)}}</option>`).join('');
+
+    function renderClinics() {{
+      const query = document.getElementById('searchBox').value.trim().toLowerCase();
+      const state = document.getElementById('stateFilter').value;
+      const type = document.getElementById('typeFilter').value;
+      const live = document.getElementById('liveFilter').value;
+      const filtered = facilities.filter(f => {{
+        if (state && f.state !== state) return false;
+        if (type && f.center_type !== type) return false;
+        if (live && String(f.currently_live) !== live) return false;
+        if (!query) return true;
+        return [f.name, f.address, f.city, f.state, f.zip, f.website, f.providers, f.id].join(' ').toLowerCase().includes(query);
+      }});
+      document.getElementById('clinicCount').textContent = `${{fmt(filtered.length)}} of ${{fmt(facilities.length)}} clinics shown`;
+      document.getElementById('clinicTable').innerHTML = filtered.map(f => `
+        <tr>
+          <td>${{esc(f.name)}}</td>
+          <td>${{esc(f.address)}}</td>
+          <td>${{esc(f.city)}}</td>
+          <td>${{esc(f.state)}}</td>
+          <td>${{esc(f.zip)}}</td>
+          <td>${{esc(f.center_type)}}</td>
+          <td>${{boolPill(f.currently_live)}}</td>
+          <td>${{f.first_seen_run_id === 1 ? '<span class="pill no">No</span>' : '<span class="pill new">Yes</span>'}}</td>
+          <td>${{esc(shortDate(f.first_seen_at))}}</td>
+          <td>${{esc(shortDate(f.last_seen_at))}}</td>
+          <td>${{esc(f.phone)}}</td>
+          <td>${{f.website ? `<a href="${{esc(f.website.startsWith('http') ? f.website : 'https://' + f.website)}}" target="_blank" rel="noreferrer">${{esc(f.website)}}</a>` : ''}}</td>
+          <td>${{esc(f.providers)}}</td>
+          <td>${{esc(f.id)}}</td>
+        </tr>
+      `).join('');
+    }}
+
+    ['searchBox', 'stateFilter', 'typeFilter', 'liveFilter'].forEach(id => {{
+      document.getElementById(id).addEventListener('input', renderClinics);
+      document.getElementById(id).addEventListener('change', renderClinics);
+    }});
+    renderClinics();
+  </script>
+</body>
+</html>
+"""
+
+
+def main():
+    data = load_dashboard_data()
+    OUT_PATH.write_text(render_dashboard(data), encoding="utf-8")
+    print(json.dumps({"dashboard": str(OUT_PATH), "clinics": len(data["facilities"])}, indent=2))
+
+
+if __name__ == "__main__":
+    main()

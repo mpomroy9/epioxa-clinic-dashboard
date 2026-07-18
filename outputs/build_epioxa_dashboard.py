@@ -314,7 +314,7 @@ def render_dashboard(data):
     }}
     .summary-grid {{
       display: grid;
-      grid-template-columns: repeat(4, minmax(140px, 1fr));
+      grid-template-columns: repeat(3, minmax(140px, 1fr));
       border-bottom: 1px solid var(--line);
     }}
     .metric {{
@@ -650,8 +650,7 @@ def render_dashboard(data):
     const metrics = [
       ['New clinics added this week', summary.new_this_week, 'new'],
       ['New since baseline', summary.new_since_baseline, 'new'],
-      ['Currently live', summary.currently_live_latest_pull, 'yes'],
-      ['Not seen latest pull', summary.not_seen_latest_pull, 'warn']
+      ['Currently live', summary.currently_live_latest_pull, 'yes']
     ];
     document.getElementById('summaryGrid').innerHTML = metrics.map(([label, value, cls]) => `
       <div class="metric">

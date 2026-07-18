@@ -111,11 +111,13 @@ def load_dashboard_data():
 
     latest_run_at = latest_run["run_at"] if latest_run else ""
     current_facilities = [f for f in facilities if f["currently_live"]]
+    latest_week = weekly[-1] if weekly else {}
     summary = {
         "last_run": latest_run_at,
         "currently_live_latest_pull": len(latest_seen_ids),
         "total_tracked_historically": len(facilities),
         "new_this_run": latest_run["new_facilities"] if latest_run else 0,
+        "new_this_week": latest_week.get("new_after_baseline", 0),
         "new_since_baseline": sum(1 for f in facilities if f["first_seen_run_id"] != 1),
         "not_seen_latest_pull": sum(1 for f in facilities if not f["currently_live"]),
         "treatment_centers": sum(1 for f in facilities if f["is_treatment_center"]),
@@ -543,7 +545,7 @@ def render_dashboard(data):
     document.getElementById('lastRun').textContent = `Latest monitor run: ${{displayDateTime(summary.last_run)}}`;
 
     const metrics = [
-      ['New this run', summary.new_this_run, 'new'],
+      ['New clinics added this week', summary.new_this_week, 'new'],
       ['New since baseline', summary.new_since_baseline, 'new'],
       ['Currently live', summary.currently_live_latest_pull, 'yes'],
       ['Not seen latest pull', summary.not_seen_latest_pull, 'warn']
@@ -556,7 +558,7 @@ def render_dashboard(data):
     `).join('');
 
     const summaryRows = [
-      ['New clinics added this run', summary.new_this_run, 'Clinics whose facility ID first appeared in the latest monitor run.'],
+      ['New clinics added this week', summary.new_this_week, 'Clinics first seen this week that were not in the original baseline.'],
       ['New clinics since baseline', summary.new_since_baseline, 'Clinics not present in the original 398-clinic baseline.'],
       ['Currently live in latest pull', summary.currently_live_latest_pull, 'Clinics returned by the most recent nationwide Epioxa pull.'],
       ['Previously tracked but not seen latest', summary.not_seen_latest_pull, 'Clinics in the database that did not appear in the latest pull.'],

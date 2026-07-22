@@ -568,6 +568,14 @@ def render_dashboard(data):
       font-size: 12px;
       padding: 0 2px 6px;
     }}
+    .th-note {{
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: none;
+    }}
     @media (max-width: 980px) {{
       header {{ align-items: flex-start; flex-direction: column; }}
       .summary-grid {{ grid-template-columns: repeat(2, minmax(140px, 1fr)); }}
@@ -694,7 +702,7 @@ def render_dashboard(data):
               <th>Center Type</th>
               <th>Currently Live</th>
               <th>New Since Baseline</th>
-              <th>First Seen</th>
+              <th>First Seen<span class="th-note">* photo estimate</span></th>
               <th>Last Seen</th>
               <th>Phone</th>
               <th>Website</th>
@@ -708,7 +716,7 @@ def render_dashboard(data):
     </section>
 
     <div class="footer-note">
-      First Seen uses the first detected clinic-photo asset date where available; otherwise it falls back to when this local monitor first observed the clinic. It is not an official go-live date.
+      First Seen dates marked with * use the first detected clinic-photo asset date. Unmarked dates use when this local monitor first observed the clinic. Neither is an official go-live date.
     </div>
   </main>
 
@@ -734,7 +742,7 @@ def render_dashboard(data):
         timeZone: 'UTC'
       }}).format(d);
     }};
-    const firstSeenDate = facility => formatShortDate(facility.photo_first_seen_estimate || facility.first_seen_at);
+    const firstSeenDate = facility => `${{formatShortDate(facility.photo_first_seen_estimate || facility.first_seen_at)}}${{facility.photo_first_seen_estimate ? '*' : ''}}`;
     const shortDate = value => formatShortDate(value);
     const weekStart = value => {{
       if (!value) return '';

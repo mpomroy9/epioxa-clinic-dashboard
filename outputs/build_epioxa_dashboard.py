@@ -616,7 +616,7 @@ def render_dashboard(data):
         <em>Estimated rows use each clinic's first detected clinic-photo added date as a proxy for when that location came online, and only include clinics with a usable photo date. Official rows use this dashboard's tracker first-seen date after the database was created.</em>
       </div>
       <div class="weekly-wrap">
-        <div class="table-scroll" style="max-height: 360px;">
+        <div class="table-scroll" id="weeklyTableScroll" style="max-height: 360px;">
           <table>
             <thead>
               <tr>
@@ -790,6 +790,10 @@ def render_dashboard(data):
         <td>${{fmt(row.cumulative_buildout)}}</td>
       </tr>
     `).join('');
+    const weeklyTableScroll = document.getElementById('weeklyTableScroll');
+    if (weeklyTableScroll) {{
+      weeklyTableScroll.scrollTop = weeklyTableScroll.scrollHeight;
+    }}
 
     const latestOfficialWeek = [...weeklyBuildout].reverse().find(row => !row.is_estimate);
     const chartRows = [...weeklyBuildout];

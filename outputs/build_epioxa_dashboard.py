@@ -387,6 +387,37 @@ def render_dashboard(data):
       gap: 10px;
       align-content: start;
     }}
+    .latest-week-card {{
+      border: 1px solid var(--line);
+      background: #f7fafb;
+      border-radius: 8px;
+      padding: 12px;
+      display: grid;
+      gap: 4px;
+    }}
+    .latest-week-card .kicker {{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }}
+    .latest-week-card .number {{
+      color: var(--teal);
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 700;
+    }}
+    .latest-week-card .detail {{
+      color: var(--muted);
+      font-size: 12px;
+    }}
+    .chart-caption {{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }}
     .bar-row {{
       display: grid;
       grid-template-columns: 76px 1fr 34px;
@@ -685,8 +716,19 @@ def render_dashboard(data):
       </tr>
     `).join('');
 
-    const maxWeekly = Math.max(1, ...weeklyBuildout.map(row => row.clinics_added));
-    document.getElementById('weeklyChart').innerHTML = weeklyBuildout.map(row => `
+    const latestOfficialWeek = [...weeklyBuildout].reverse().find(row => !row.is_estimate);
+    const chartRows = [...weeklyBuildout].reverse();
+    const maxWeekly = Math.max(1, ...chartRows.map(row => row.clinics_added));
+    const latestWeekCard = latestOfficialWeek ? `
+      <div class="latest-week-card">
+        <div class="kicker">Latest official week</div>
+        <div class="number">${{fmt(latestOfficialWeek.clinics_added)}}</div>
+        <div><strong>${{esc(latestOfficialWeek.week_starting)}}</strong></div>
+        <div class="detail">${{fmt(latestOfficialWeek.treatment_centers)}} treatment / ${{fmt(latestOfficialWeek.detection_centers)}} detection / ${{fmt(latestOfficialWeek.both_center_types)}} both</div>
+      </div>
+      <div class="chart-caption">Newest Weeks First</div>
+    ` : '';
+    document.getElementById('weeklyChart').innerHTML = latestWeekCard + chartRows.map(row => `
       <div class="bar-row">
         <span>${{esc(row.week_starting)}}${{row.is_estimate ? ' est.' : ''}}</span>
         <span class="bar-track"><span class="bar-fill ${{row.is_estimate ? 'estimated' : ''}}" style="width: ${{Math.max(4, Math.round(row.clinics_added / maxWeekly * 100))}}%"></span></span>

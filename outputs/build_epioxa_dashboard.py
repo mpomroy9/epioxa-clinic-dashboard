@@ -530,25 +530,23 @@ def render_dashboard(data):
     .clinics-table th:nth-child(7) {{ width: 120px; }}
     .clinics-table th:nth-child(8) {{ width: 120px; }}
     .clinics-table th:nth-child(9) {{ width: 150px; }}
-    .clinics-table th:nth-child(10) {{ width: 170px; }}
+    .clinics-table th:nth-child(10) {{ width: 190px; }}
     .clinics-table th:nth-child(11) {{ width: 190px; }}
     .clinics-table th:nth-child(12) {{ width: 135px; }}
     .clinics-table th:nth-child(13) {{ width: 180px; }}
     .clinics-table th:nth-child(14) {{ width: 300px; }}
-    .clinics-table th:nth-child(15) {{ width: 260px; }}
     .new-clinics-table th:nth-child(1) {{ width: 150px; }}
-    .new-clinics-table th:nth-child(2) {{ width: 170px; }}
-    .new-clinics-table th:nth-child(3) {{ width: 230px; }}
-    .new-clinics-table th:nth-child(4) {{ width: 260px; }}
-    .new-clinics-table th:nth-child(5) {{ width: 120px; }}
-    .new-clinics-table th:nth-child(6) {{ width: 70px; }}
-    .new-clinics-table th:nth-child(7) {{ width: 90px; }}
+    .new-clinics-table th:nth-child(2) {{ width: 230px; }}
+    .new-clinics-table th:nth-child(3) {{ width: 260px; }}
+    .new-clinics-table th:nth-child(4) {{ width: 120px; }}
+    .new-clinics-table th:nth-child(5) {{ width: 70px; }}
+    .new-clinics-table th:nth-child(6) {{ width: 90px; }}
+    .new-clinics-table th:nth-child(7) {{ width: 120px; }}
     .new-clinics-table th:nth-child(8) {{ width: 120px; }}
-    .new-clinics-table th:nth-child(9) {{ width: 120px; }}
-    .new-clinics-table th:nth-child(10) {{ width: 135px; }}
-    .new-clinics-table th:nth-child(11) {{ width: 180px; }}
-    .new-clinics-table th:nth-child(12) {{ width: 300px; }}
-    .new-clinics-table th:nth-child(13) {{ width: 260px; }}
+    .new-clinics-table th:nth-child(9) {{ width: 135px; }}
+    .new-clinics-table th:nth-child(10) {{ width: 180px; }}
+    .new-clinics-table th:nth-child(11) {{ width: 300px; }}
+    .new-clinics-table th:nth-child(12) {{ width: 260px; }}
     .pill {{
       display: inline-flex;
       align-items: center;
@@ -645,8 +643,7 @@ def render_dashboard(data):
         <table class="new-clinics-table">
           <thead>
             <tr>
-              <th>First Seen (Estimated)</th>
-              <th>Tracker First Seen</th>
+              <th>First Seen</th>
               <th>Clinic</th>
               <th>Address</th>
               <th>City</th>
@@ -697,8 +694,7 @@ def render_dashboard(data):
               <th>Center Type</th>
               <th>Currently Live</th>
               <th>New Since Baseline</th>
-              <th>First Seen (Estimated)</th>
-              <th>Tracker First Seen</th>
+              <th>First Seen</th>
               <th>Last Seen</th>
               <th>Phone</th>
               <th>Website</th>
@@ -712,7 +708,7 @@ def render_dashboard(data):
     </section>
 
     <div class="footer-note">
-      First Seen (Estimated) uses the first detected clinic-photo asset date where available. Tracker First Seen is when this local monitor first observed the clinic and is not an official go-live date.
+      First Seen uses the first detected clinic-photo asset date where available; otherwise it falls back to when this local monitor first observed the clinic. It is not an official go-live date.
     </div>
   </main>
 
@@ -724,8 +720,22 @@ def render_dashboard(data):
 
     const fmt = value => new Intl.NumberFormat().format(value ?? 0);
     const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[ch]));
-    const shortDate = value => value ? String(value).slice(0, 10) : '';
-    const estimatedDate = facility => facility.photo_first_seen_estimate || 'No photo estimate';
+    const formatShortDate = value => {{
+      if (!value) return '';
+      const d = new Date(value);
+      if (Number.isNaN(d.valueOf())) {{
+        const parts = String(value).slice(0, 10).split('-');
+        return parts.length === 3 ? `${{parts[1]}}/${{parts[2]}}/${{parts[0].slice(2)}}` : value;
+      }}
+      return new Intl.DateTimeFormat(undefined, {{
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+        timeZone: 'UTC'
+      }}).format(d);
+    }};
+    const firstSeenDate = facility => formatShortDate(facility.photo_first_seen_estimate || facility.first_seen_at);
+    const shortDate = value => formatShortDate(value);
     const weekStart = value => {{
       if (!value) return '';
       const d = new Date(value);
@@ -828,8 +838,7 @@ def render_dashboard(data):
     document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics first seen during week of ${{esc(latestRunWeekStart)}}`;
     document.getElementById('newClinicTable').innerHTML = newClinics.length ? newClinics.map(f => `
       <tr>
-        <td>${{esc(estimatedDate(f))}}</td>
-        <td>${{esc(displayDateTime(f.first_seen_at))}}</td>
+        <td>${{esc(firstSeenDate(f))}}</td>
         <td>${{esc(f.name)}}</td>
         <td>${{esc(f.address)}}</td>
         <td>${{esc(f.city)}}</td>
@@ -842,7 +851,7 @@ def render_dashboard(data):
         <td>${{esc(f.providers)}}</td>
         <td>${{esc(f.id)}}</td>
       </tr>
-    `).join('') : '<tr><td colspan="13" class="subtle">No clinics were first seen during this monitor week.</td></tr>';
+    `).join('') : '<tr><td colspan="12" class="subtle">No clinics were first seen during this monitor week.</td></tr>';
 
     const states = [...new Set(facilities.map(f => f.state).filter(Boolean))].sort();
     document.getElementById('stateFilter').innerHTML += states.map(state => `<option value="${{esc(state)}}">${{esc(state)}}</option>`).join('');
@@ -870,8 +879,7 @@ def render_dashboard(data):
           <td>${{esc(f.center_type)}}</td>
           <td>${{boolPill(f.currently_live)}}</td>
           <td>${{f.first_seen_run_id === 1 ? '<span class="pill no">No</span>' : '<span class="pill new">Yes</span>'}}</td>
-          <td>${{esc(estimatedDate(f))}}</td>
-          <td>${{esc(shortDate(f.first_seen_at))}}</td>
+          <td>${{esc(firstSeenDate(f))}}</td>
           <td>${{esc(shortDate(f.last_seen_at))}}</td>
           <td>${{esc(f.phone)}}</td>
           <td>${{f.website ? `<a href="${{esc(f.website.startsWith('http') ? f.website : 'https://' + f.website)}}" target="_blank" rel="noreferrer">${{esc(f.website)}}</a>` : ''}}</td>

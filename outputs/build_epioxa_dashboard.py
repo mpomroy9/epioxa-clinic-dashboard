@@ -1,6 +1,7 @@
 import csv
 import html
 import json
+import re
 import sqlite3
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -10,6 +11,7 @@ ROOT = Path(__file__).resolve().parent
 DB_PATH = ROOT / "epioxa-clinics-monitor.db"
 OUT_PATH = ROOT / "epioxa-dashboard.html"
 ASSET_WEEKLY_PATH = ROOT / "epioxa-buildout-by-week-asset-proxy.csv"
+ASSET_DETAIL_PATH = ROOT / "epioxa-clinics-with-asset-date-crosscheck.csv"
 
 
 def parse_dt(value):
@@ -40,6 +42,41 @@ def int_value(value):
         return int(value)
     except (TypeError, ValueError):
         return 0
+
+
+def normalize_key(*parts):
+    joined = " ".join(str(part or "") for part in parts)
+    return re.sub(r"[^a-z0-9]+", " ", joined.lower()).strip()
+
+
+def load_facility_asset_estimates():
+    if not ASSET_DETAIL_PATH.exists():
+        return {}
+
+    exact = {}
+    loose = {}
+    with ASSET_DETAIL_PATH.open(newline="", encoding="utf-8-sig") as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            estimate = row.get("Earliest facility asset created date") or row.get(
+                "Earliest any public asset created date", ""
+            )
+            if not estimate:
+                continue
+            item = {
+                "photo_first_seen_estimate": estimate,
+                "photo_estimate_basis": row.get("Cross-check assessment", ""),
+                "photo_estimate_source": row.get("Date source", ""),
+            }
+            exact[
+                normalize_key(row.get("Clinic"), row.get("Address"), row.get("City"), row.get("State"))
+            ] = item
+            loose.setdefault(normalize_key(row.get("Clinic"), row.get("City"), row.get("State")), []).append(item)
+
+    for key, matches in loose.items():
+        if len(matches) == 1:
+            exact.setdefault(key, matches[0])
+    return exact
 
 
 def load_asset_weekly_estimates():
@@ -97,6 +134,7 @@ def load_dashboard_data():
         ORDER BY lower(name), lower(city), lower(state)
         """,
     )
+    asset_estimates = load_facility_asset_estimates()
     for facility in facilities:
         facility["currently_live"] = facility["id"] in latest_seen_ids
         facility["center_type"] = (
@@ -108,6 +146,14 @@ def load_dashboard_data():
             if facility["is_detection_center"]
             else ""
         )
+        estimate = asset_estimates.get(
+            normalize_key(facility["name"], facility["address"], facility["city"], facility["state"])
+        ) or asset_estimates.get(normalize_key(facility["name"], facility["city"], facility["state"]))
+        facility["photo_first_seen_estimate"] = (
+            estimate.get("photo_first_seen_estimate", "") if estimate else ""
+        )
+        facility["photo_estimate_basis"] = estimate.get("photo_estimate_basis", "") if estimate else ""
+        facility["photo_estimate_source"] = estimate.get("photo_estimate_source", "") if estimate else ""
 
     runs = run_query(
         conn,
@@ -483,24 +529,26 @@ def render_dashboard(data):
     .clinics-table th:nth-child(6) {{ width: 120px; }}
     .clinics-table th:nth-child(7) {{ width: 120px; }}
     .clinics-table th:nth-child(8) {{ width: 120px; }}
-    .clinics-table th:nth-child(9) {{ width: 190px; }}
-    .clinics-table th:nth-child(10) {{ width: 190px; }}
-    .clinics-table th:nth-child(11) {{ width: 135px; }}
-    .clinics-table th:nth-child(12) {{ width: 180px; }}
-    .clinics-table th:nth-child(13) {{ width: 300px; }}
-    .clinics-table th:nth-child(14) {{ width: 260px; }}
+    .clinics-table th:nth-child(9) {{ width: 150px; }}
+    .clinics-table th:nth-child(10) {{ width: 170px; }}
+    .clinics-table th:nth-child(11) {{ width: 190px; }}
+    .clinics-table th:nth-child(12) {{ width: 135px; }}
+    .clinics-table th:nth-child(13) {{ width: 180px; }}
+    .clinics-table th:nth-child(14) {{ width: 300px; }}
+    .clinics-table th:nth-child(15) {{ width: 260px; }}
     .new-clinics-table th:nth-child(1) {{ width: 150px; }}
-    .new-clinics-table th:nth-child(2) {{ width: 230px; }}
-    .new-clinics-table th:nth-child(3) {{ width: 260px; }}
-    .new-clinics-table th:nth-child(4) {{ width: 120px; }}
-    .new-clinics-table th:nth-child(5) {{ width: 70px; }}
-    .new-clinics-table th:nth-child(6) {{ width: 90px; }}
-    .new-clinics-table th:nth-child(7) {{ width: 120px; }}
+    .new-clinics-table th:nth-child(2) {{ width: 170px; }}
+    .new-clinics-table th:nth-child(3) {{ width: 230px; }}
+    .new-clinics-table th:nth-child(4) {{ width: 260px; }}
+    .new-clinics-table th:nth-child(5) {{ width: 120px; }}
+    .new-clinics-table th:nth-child(6) {{ width: 70px; }}
+    .new-clinics-table th:nth-child(7) {{ width: 90px; }}
     .new-clinics-table th:nth-child(8) {{ width: 120px; }}
-    .new-clinics-table th:nth-child(9) {{ width: 135px; }}
-    .new-clinics-table th:nth-child(10) {{ width: 180px; }}
-    .new-clinics-table th:nth-child(11) {{ width: 300px; }}
-    .new-clinics-table th:nth-child(12) {{ width: 260px; }}
+    .new-clinics-table th:nth-child(9) {{ width: 120px; }}
+    .new-clinics-table th:nth-child(10) {{ width: 135px; }}
+    .new-clinics-table th:nth-child(11) {{ width: 180px; }}
+    .new-clinics-table th:nth-child(12) {{ width: 300px; }}
+    .new-clinics-table th:nth-child(13) {{ width: 260px; }}
     .pill {{
       display: inline-flex;
       align-items: center;
@@ -597,7 +645,8 @@ def render_dashboard(data):
         <table class="new-clinics-table">
           <thead>
             <tr>
-              <th>First Seen</th>
+              <th>First Seen (Estimated)</th>
+              <th>Tracker First Seen</th>
               <th>Clinic</th>
               <th>Address</th>
               <th>City</th>
@@ -648,7 +697,8 @@ def render_dashboard(data):
               <th>Center Type</th>
               <th>Currently Live</th>
               <th>New Since Baseline</th>
-              <th>First Seen</th>
+              <th>First Seen (Estimated)</th>
+              <th>Tracker First Seen</th>
               <th>Last Seen</th>
               <th>Phone</th>
               <th>Website</th>
@@ -662,7 +712,7 @@ def render_dashboard(data):
     </section>
 
     <div class="footer-note">
-      First seen by monitor is not an official go-live date. Baseline clinics were loaded from the original pull; later clinics are first observed by this local tracker.
+      First Seen (Estimated) uses the first detected clinic-photo asset date where available. Tracker First Seen is when this local monitor first observed the clinic and is not an official go-live date.
     </div>
   </main>
 
@@ -675,6 +725,7 @@ def render_dashboard(data):
     const fmt = value => new Intl.NumberFormat().format(value ?? 0);
     const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[ch]));
     const shortDate = value => value ? String(value).slice(0, 10) : '';
+    const estimatedDate = facility => facility.photo_first_seen_estimate || 'No photo estimate';
     const weekStart = value => {{
       if (!value) return '';
       const d = new Date(value);
@@ -773,6 +824,7 @@ def render_dashboard(data):
     document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics first seen during week of ${{esc(latestRunWeekStart)}}`;
     document.getElementById('newClinicTable').innerHTML = newClinics.length ? newClinics.map(f => `
       <tr>
+        <td>${{esc(estimatedDate(f))}}</td>
         <td>${{esc(displayDateTime(f.first_seen_at))}}</td>
         <td>${{esc(f.name)}}</td>
         <td>${{esc(f.address)}}</td>
@@ -786,7 +838,7 @@ def render_dashboard(data):
         <td>${{esc(f.providers)}}</td>
         <td>${{esc(f.id)}}</td>
       </tr>
-    `).join('') : '<tr><td colspan="12" class="subtle">No clinics were first seen during this monitor week.</td></tr>';
+    `).join('') : '<tr><td colspan="13" class="subtle">No clinics were first seen during this monitor week.</td></tr>';
 
     const states = [...new Set(facilities.map(f => f.state).filter(Boolean))].sort();
     document.getElementById('stateFilter').innerHTML += states.map(state => `<option value="${{esc(state)}}">${{esc(state)}}</option>`).join('');
@@ -814,6 +866,7 @@ def render_dashboard(data):
           <td>${{esc(f.center_type)}}</td>
           <td>${{boolPill(f.currently_live)}}</td>
           <td>${{f.first_seen_run_id === 1 ? '<span class="pill no">No</span>' : '<span class="pill new">Yes</span>'}}</td>
+          <td>${{esc(estimatedDate(f))}}</td>
           <td>${{esc(shortDate(f.first_seen_at))}}</td>
           <td>${{esc(shortDate(f.last_seen_at))}}</td>
           <td>${{esc(f.phone)}}</td>

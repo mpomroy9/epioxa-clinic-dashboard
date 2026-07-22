@@ -559,7 +559,7 @@ def render_dashboard(data):
     }}
     .yes {{ background: var(--green-bg); color: var(--teal); }}
     .no {{ background: #eef1f4; color: var(--muted); }}
-    .new {{ background: var(--rose-bg); color: var(--rose); }}
+    .new {{ background: var(--blue-bg); color: var(--blue); }}
     .warn {{ background: var(--amber-bg); color: var(--amber); }}
     a {{ color: var(--blue); text-decoration: none; }}
     a:hover {{ text-decoration: underline; }}

@@ -386,6 +386,9 @@ def render_dashboard(data):
       display: grid;
       gap: 10px;
       align-content: start;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      max-height: 360px;
+      overflow: hidden;
     }}
     .latest-week-card {{
       border: 1px solid var(--line);
@@ -417,6 +420,13 @@ def render_dashboard(data):
       font-weight: 700;
       text-transform: uppercase;
       margin-top: 2px;
+    }}
+    .bar-scroll {{
+      min-height: 0;
+      overflow-y: auto;
+      display: grid;
+      gap: 10px;
+      padding-right: 4px;
     }}
     .bar-row {{
       display: grid;
@@ -717,7 +727,7 @@ def render_dashboard(data):
     `).join('');
 
     const latestOfficialWeek = [...weeklyBuildout].reverse().find(row => !row.is_estimate);
-    const chartRows = [...weeklyBuildout].reverse();
+    const chartRows = [...weeklyBuildout];
     const maxWeekly = Math.max(1, ...chartRows.map(row => row.clinics_added));
     const latestWeekCard = latestOfficialWeek ? `
       <div class="latest-week-card">
@@ -726,15 +736,21 @@ def render_dashboard(data):
         <div><strong>${{esc(latestOfficialWeek.week_starting)}}</strong></div>
         <div class="detail">${{fmt(latestOfficialWeek.treatment_centers)}} treatment / ${{fmt(latestOfficialWeek.detection_centers)}} detection / ${{fmt(latestOfficialWeek.both_center_types)}} both</div>
       </div>
-      <div class="chart-caption">Newest Weeks First</div>
+      <div class="chart-caption">Weekly Trend</div>
     ` : '';
-    document.getElementById('weeklyChart').innerHTML = latestWeekCard + chartRows.map(row => `
+    document.getElementById('weeklyChart').innerHTML = latestWeekCard + `
+      <div class="bar-scroll" id="weeklyChartBars">
+    ` + chartRows.map(row => `
       <div class="bar-row">
         <span>${{esc(row.week_starting)}}${{row.is_estimate ? ' est.' : ''}}</span>
         <span class="bar-track"><span class="bar-fill ${{row.is_estimate ? 'estimated' : ''}}" style="width: ${{Math.max(4, Math.round(row.clinics_added / maxWeekly * 100))}}%"></span></span>
         <strong>${{fmt(row.clinics_added)}}</strong>
       </div>
-    `).join('');
+    `).join('') + `</div>`;
+    const weeklyChartBars = document.getElementById('weeklyChartBars');
+    if (weeklyChartBars) {{
+      weeklyChartBars.scrollTop = weeklyChartBars.scrollHeight;
+    }}
 
     const newClinics = facilities
       .filter(f => f.first_seen_run_id !== 1)

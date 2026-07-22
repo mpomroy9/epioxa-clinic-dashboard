@@ -183,10 +183,15 @@ def load_dashboard_data():
         weekly_buildout.append(row)
 
     latest_run_at = latest_run["run_at"] if latest_run else ""
+    latest_run_week_start = week_start(latest_run_at)
+    latest_week = next(
+        (row for row in weekly if row["week_starting"] == latest_run_week_start),
+        {},
+    )
     current_facilities = [f for f in facilities if f["currently_live"]]
-    latest_week = weekly[-1] if weekly else {}
     summary = {
         "last_run": latest_run_at,
+        "latest_run_week_start": latest_run_week_start,
         "currently_live_latest_pull": len(latest_seen_ids),
         "total_tracked_historically": len(facilities),
         "new_this_run": latest_run["new_facilities"] if latest_run else 0,
@@ -585,7 +590,7 @@ def render_dashboard(data):
 
     <section>
       <div class="section-head">
-        <h2>New Clinics Added</h2>
+        <h2>New Clinics Added This Week</h2>
         <span id="newClinicCount" class="subtle"></span>
       </div>
       <div class="table-scroll" style="max-height: 430px;">
@@ -670,6 +675,15 @@ def render_dashboard(data):
     const fmt = value => new Intl.NumberFormat().format(value ?? 0);
     const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}}[ch]));
     const shortDate = value => value ? String(value).slice(0, 10) : '';
+    const weekStart = value => {{
+      if (!value) return '';
+      const d = new Date(value);
+      if (Number.isNaN(d.valueOf())) return '';
+      const utc = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+      const day = utc.getUTCDay() || 7;
+      utc.setUTCDate(utc.getUTCDate() - day + 1);
+      return utc.toISOString().slice(0, 10);
+    }};
     const displayDateTime = value => {{
       if (!value) return 'Not run yet';
       const d = new Date(value);
@@ -752,11 +766,12 @@ def render_dashboard(data):
       weeklyChartBars.scrollTop = weeklyChartBars.scrollHeight;
     }}
 
+    const latestRunWeekStart = summary.latest_run_week_start || weekStart(summary.last_run);
     const newClinics = facilities
-      .filter(f => f.first_seen_run_id !== 1)
+      .filter(f => f.first_seen_run_id !== 1 && weekStart(f.first_seen_at) === latestRunWeekStart)
       .sort((a, b) => String(b.first_seen_at).localeCompare(String(a.first_seen_at)) || String(a.name).localeCompare(String(b.name)));
-    document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics not in the original baseline`;
-    document.getElementById('newClinicTable').innerHTML = newClinics.map(f => `
+    document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics first seen during week of ${{esc(latestRunWeekStart)}}`;
+    document.getElementById('newClinicTable').innerHTML = newClinics.length ? newClinics.map(f => `
       <tr>
         <td>${{esc(displayDateTime(f.first_seen_at))}}</td>
         <td>${{esc(f.name)}}</td>
@@ -771,7 +786,7 @@ def render_dashboard(data):
         <td>${{esc(f.providers)}}</td>
         <td>${{esc(f.id)}}</td>
       </tr>
-    `).join('');
+    `).join('') : '<tr><td colspan="12" class="subtle">No clinics were first seen during this monitor week.</td></tr>';
 
     const states = [...new Set(facilities.map(f => f.state).filter(Boolean))].sort();
     document.getElementById('stateFilter').innerHTML += states.map(state => `<option value="${{esc(state)}}">${{esc(state)}}</option>`).join('');

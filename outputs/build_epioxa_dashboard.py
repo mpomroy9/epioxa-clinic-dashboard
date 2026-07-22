@@ -576,6 +576,9 @@ def render_dashboard(data):
       font-weight: 400;
       text-transform: none;
     }}
+    .photo-estimate-date {{
+      font-style: italic;
+    }}
     @media (max-width: 980px) {{
       header {{ align-items: flex-start; flex-direction: column; }}
       .summary-grid {{ grid-template-columns: repeat(2, minmax(140px, 1fr)); }}
@@ -702,7 +705,7 @@ def render_dashboard(data):
               <th>Center Type</th>
               <th>Currently Live</th>
               <th>New Since Baseline</th>
-              <th>First Seen<span class="th-note">* photo estimate</span></th>
+              <th>First Seen<span class="th-note">italic = photo estimate</span></th>
               <th>Last Seen</th>
               <th>Phone</th>
               <th>Website</th>
@@ -716,7 +719,7 @@ def render_dashboard(data):
     </section>
 
     <div class="footer-note">
-      First Seen dates marked with * use the first detected clinic-photo asset date. Unmarked dates use when this local monitor first observed the clinic. Neither is an official go-live date.
+      Italic First Seen dates use the first detected clinic-photo asset date. Non-italic dates use when this local monitor first observed the clinic. Neither is an official go-live date.
     </div>
   </main>
 
@@ -742,7 +745,8 @@ def render_dashboard(data):
         timeZone: 'UTC'
       }}).format(d);
     }};
-    const firstSeenDate = facility => `${{formatShortDate(facility.photo_first_seen_estimate || facility.first_seen_at)}}${{facility.photo_first_seen_estimate ? '*' : ''}}`;
+    const firstSeenDate = facility => formatShortDate(facility.photo_first_seen_estimate || facility.first_seen_at);
+    const firstSeenClass = facility => facility.photo_first_seen_estimate ? ' class="photo-estimate-date"' : '';
     const shortDate = value => formatShortDate(value);
     const weekStart = value => {{
       if (!value) return '';
@@ -846,7 +850,7 @@ def render_dashboard(data):
     document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics first seen during week of ${{esc(latestRunWeekStart)}}`;
     document.getElementById('newClinicTable').innerHTML = newClinics.length ? newClinics.map(f => `
       <tr>
-        <td>${{esc(firstSeenDate(f))}}</td>
+        <td${{firstSeenClass(f)}}>${{esc(firstSeenDate(f))}}</td>
         <td>${{esc(f.name)}}</td>
         <td>${{esc(f.address)}}</td>
         <td>${{esc(f.city)}}</td>
@@ -887,7 +891,7 @@ def render_dashboard(data):
           <td>${{esc(f.center_type)}}</td>
           <td>${{boolPill(f.currently_live)}}</td>
           <td>${{f.first_seen_run_id === 1 ? '<span class="pill no">No</span>' : '<span class="pill new">Yes</span>'}}</td>
-          <td>${{esc(firstSeenDate(f))}}</td>
+          <td${{firstSeenClass(f)}}>${{esc(firstSeenDate(f))}}</td>
           <td>${{esc(shortDate(f.last_seen_at))}}</td>
           <td>${{esc(f.phone)}}</td>
           <td>${{f.website ? `<a href="${{esc(f.website.startsWith('http') ? f.website : 'https://' + f.website)}}" target="_blank" rel="noreferrer">${{esc(f.website)}}</a>` : ''}}</td>

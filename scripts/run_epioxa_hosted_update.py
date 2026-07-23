@@ -62,7 +62,6 @@ def main():
             "outputs/epioxa-clinics-monitor.db",
             "outputs/epioxa-dashboard.html",
             "outputs/epioxa-monitor-summary.txt",
-            "outputs/epioxa-monitor-current-clinics.csv",
             "outputs/epioxa-monitor-new-since-baseline.csv",
             "outputs/epioxa-monitor-tracked-clinics.csv",
         ]

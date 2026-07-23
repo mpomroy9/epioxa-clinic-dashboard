@@ -38,6 +38,8 @@ jobs:
           python-version: "3.12"
 
       - name: Run Epioxa tracker
+        env:
+          GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" = "true" ]; then
             python scripts/run_epioxa_hosted_update.py --force

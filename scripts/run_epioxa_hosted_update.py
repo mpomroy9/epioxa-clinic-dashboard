@@ -1,4 +1,5 @@
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -9,6 +10,8 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUTS = ROOT / "outputs"
+DST_8AM_CRON = "0 12 * * *"
+STANDARD_8AM_CRON = "0 13 * * *"
 
 
 def run(cmd, *, check=True):
@@ -23,17 +26,51 @@ def run(cmd, *, check=True):
     return result
 
 
+def expected_8am_schedule(now_ny):
+    """Return the UTC cron slot that maps to 8am in New York today."""
+    offset = now_ny.utcoffset()
+    if offset is None:
+        return None
+    offset_hours = offset.total_seconds() / 3600
+    if offset_hours == -4:
+        return DST_8AM_CRON
+    if offset_hours == -5:
+        return STANDARD_8AM_CRON
+    return None
+
+
 def should_run_now():
     """Avoid duplicate DST schedules when GitHub runs both 12:00 and 13:00 UTC."""
     if "--force" in sys.argv:
         return True
     now_ny = datetime.now(ZoneInfo("America/New_York"))
-    return now_ny.hour == 8
+    scheduled_slot = os.environ.get("GITHUB_EVENT_SCHEDULE", "").strip()
+    if scheduled_slot:
+        expected_slot = expected_8am_schedule(now_ny)
+        if expected_slot:
+            if scheduled_slot == expected_slot:
+                print(
+                    f"Running scheduled slot {scheduled_slot!r} for "
+                    f"{now_ny:%Y-%m-%d} America/New_York."
+                )
+                return True
+            print(
+                f"Skipping: scheduled slot {scheduled_slot!r} is not the active "
+                f"8am America/New_York slot ({expected_slot!r}) for "
+                f"{now_ny:%Y-%m-%d}."
+            )
+            return False
+        print("Running: unable to determine the active 8am New York schedule slot.")
+        return True
+
+    if now_ny.hour == 8:
+        return True
+    print(f"Skipping: current America/New_York hour is {now_ny.hour}, not 8.")
+    return False
 
 
 def main():
     if not should_run_now():
-        print("Skipping: current America/New_York hour is not 8.")
         return 0
 
     monitor = OUTPUTS / "epioxa_weekly_monitor.py"

@@ -1,0 +1,60 @@
+name: Epioxa Daily Tracker
+
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Run even if it is not 8am America/New_York
+        required: false
+        default: "true"
+  schedule:
+    # GitHub cron is UTC. These two slots cover 8am New York during
+    # daylight saving time and standard time; the Python runner guards duplicates.
+    - cron: "0 12 * * *"
+    - cron: "0 13 * * *"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: epioxa-daily-tracker
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Epioxa tracker
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force }}" = "true" ]; then
+            python scripts/run_epioxa_hosted_update.py --force
+          else
+            python scripts/run_epioxa_hosted_update.py
+          fi
+
+      - name: Build static dashboard
+        run: npm run build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload dashboard artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

@@ -38,6 +38,7 @@ jobs:
           python-version: "3.12"
 
       - name: Run Epioxa tracker
+        id: tracker
         env:
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
         run: |
@@ -48,15 +49,19 @@ jobs:
           fi
 
       - name: Build static dashboard
+        if: steps.tracker.outputs.did_run == 'true'
         run: npm run build
 
       - name: Configure GitHub Pages
+        if: steps.tracker.outputs.did_run == 'true'
         uses: actions/configure-pages@v5
 
       - name: Upload dashboard artifact
+        if: steps.tracker.outputs.did_run == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
       - name: Deploy to GitHub Pages
+        if: steps.tracker.outputs.did_run == 'true'
         uses: actions/deploy-pages@v4

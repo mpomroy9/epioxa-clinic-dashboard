@@ -26,6 +26,14 @@ def run(cmd, *, check=True):
     return result
 
 
+def set_action_output(name, value):
+    github_output = os.environ.get("GITHUB_OUTPUT")
+    if not github_output:
+        return
+    with open(github_output, "a", encoding="utf-8") as output:
+        output.write(f"{name}={value}\n")
+
+
 def expected_8am_schedule(now_ny):
     """Return the UTC cron slot that maps to 8am in New York today."""
     offset = now_ny.utcoffset()
@@ -71,7 +79,9 @@ def should_run_now():
 
 def main():
     if not should_run_now():
+        set_action_output("did_run", "false")
         return 0
+    set_action_output("did_run", "true")
 
     monitor = OUTPUTS / "epioxa_weekly_monitor.py"
     run([sys.executable, str(monitor), "--delay-seconds", "5"])

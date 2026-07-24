@@ -1,0 +1,8 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Black Hills Regional Eye Institute,"2800 Third St, Rapid City, SD 57701",Rapid City,SD,57701,Yes,Yes,Yes,2026-07-24T13:24:06+00:00,2026-07-24T13:24:06+00:00,+16057025171,,,d937b227-2994-445c-aaf2-c188c5f0314f
+Geisinger Healthplex Centerpoint,"1201 Oak Street, Pittston, PA 18640",Pittston,PA,18640,Yes,No,Yes,2026-07-24T13:24:06+00:00,2026-07-24T13:24:06+00:00,+15707745541,,Steve Carrubba MD,e5733aa8-3791-48cb-8cfb-a1df5acdc679
+Select Eye Care,"8601 LaSalle Rd / Ste 108, Towson, MD 21286",Towson,MD,21286,Yes,No,Yes,2026-07-24T13:24:06+00:00,2026-07-24T13:24:06+00:00,+14105931393,https://www.select-eyecare.com/,,3686762a-f278-42e7-b596-1d2f0906c8f3
+SSM Health,"2850 O’Keefe Avenue,, Sun Prairie, WI 53590",Sun Prairie,WI,53590,Yes,Yes,Yes,2026-07-24T13:24:06+00:00,2026-07-24T13:24:06+00:00,+16082925596,,,9177dee6-c7f6-4011-a171-296aa4566298
+Tower Clock Eye Center,"1087 West Mason St., Green Bay, WI 54303",Green Bay,WI,54303,Yes,Yes,Yes,2026-07-24T13:24:06+00:00,2026-07-24T13:24:06+00:00,+19207893781,towerclockeyecenter.com,,9e778072-94e3-44b4-9964-e6de13cc4dc9
+University of Minnesota Health - Eye Care,"516 Delaware Street SE / 9th Floor, Minneapolis, MN 55455",Minneapolis,MN,55455,Yes,Yes,Yes,2026-07-24T13:24:06+00:00,2026-07-24T13:24:06+00:00,+16123244416,,,3dc55d70-cf2e-49a5-8e66-1e6709388b55
+UW Health Eye Care,"1 South Park, Madison, WI 53715",Madison,WI,53715,No,Yes,Yes,2026-07-24T13:24:06+00:00,2026-07-24T13:24:06+00:00,+16084202761,http://www.uwhealth.org/eyecare/conditions-and-treatments/10778,,3ae4a09c-032b-4c0b-9304-f9243e3a25ce

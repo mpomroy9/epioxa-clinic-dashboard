@@ -37,6 +37,14 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Test tracker
+        run: python -m unittest discover -s tests -v
+
       - name: Run Epioxa tracker
         id: tracker
         env:
@@ -47,10 +55,6 @@ jobs:
           else
             python scripts/run_epioxa_hosted_update.py
           fi
-
-      - name: Build static dashboard
-        if: steps.tracker.outputs.did_run == 'true'
-        run: npm run build
 
       - name: Configure GitHub Pages
         if: steps.tracker.outputs.did_run == 'true'

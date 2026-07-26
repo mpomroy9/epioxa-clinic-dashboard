@@ -22,4 +22,6 @@ The workflow publishes the built `dist/` folder to GitHub Pages. The dashboard U
 
 `https://<github-user-or-org>.github.io/<repo-name>/`
 
-The current `chatgpt.site` dashboard is separate from GitHub Pages and will not update from GitHub Actions unless a separate Sites deployment credential/API path is added.
+GitHub `main` is the canonical tracker source and state.
+
+The current `chatgpt.site` dashboard is separate from GitHub Pages and will not update from GitHub Actions unless a separate Sites deployment credential/API path is added. Until then, every manual Sites release must first sync to the current GitHub `main` commit and use that exact commit SHA for the Sites version.

@@ -5,6 +5,7 @@ Total tracked clinics historically: 443
 New clinics this run: 1
 New clinics since baseline: 45
 Previously tracked clinics not seen in latest pull: 4
+Clinics missing targeted place IDs: 20
 
 Recent runs:
 - 2026-07-25T13:10:49+00:00 | total 439 | new 1 | complete

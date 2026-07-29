@@ -1,0 +1,4 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Advanced Vision Care,"2710 East Airline Road, Victoria, TX 77901",Victoria,TX,77901,No,Yes,Yes,2026-07-29T13:54:58+00:00,2026-07-29T13:54:58+00:00,+13615242353,https://avcvictoria.com/our-practice/,Valorie Baker OD,8656e976-a277-4c55-92cf-9b43c61637eb
+Graystone Eye,"2424 Century Place SE, Hickory, NC 28602",Hickory,NC,28602,No,Yes,Yes,2026-07-29T13:54:58+00:00,2026-07-29T13:54:58+00:00,+12184266198,https://www.graystone-eye.com/cornea-services/,Jacob Keener; Heather Day,56e88bbf-e52f-4fe1-91a9-6d72f02eac21
+Optical Illusions San Mateo,"194 West Hillsdale Boulevard, San Mateo, CA 94403",San Mateo,CA,94403,No,Yes,Yes,2026-07-29T13:54:58+00:00,2026-07-29T13:54:58+00:00,+16504569437,www.opti-illusions.com,,1629d45b-294f-4b14-aaf4-b8463b4a2010

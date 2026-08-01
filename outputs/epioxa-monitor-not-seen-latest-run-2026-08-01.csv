@@ -1,0 +1,9 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Boston Vision,"25 Marston Street
+Marston Medical Building Suite 104, Lawrence, MA 01841",Lawrence,MA,01841,No,Yes,No,2026-07-22T01:05:31+00:00,2026-07-31T13:50:30+00:00,+19377525492,https://www.bostonvision.com/services/cornea/corneal-cross-linking,Alexander Martin OD,7e1a4622-6fec-4c38-9740-1a7949dbb98f
+Bright Eyes Optical New Rochelle,"177 B East Main Street, New Rochelle, NY 10801",New Rochelle,NY,10801,No,Yes,No,2026-07-23T00:58:32+00:00,2026-07-29T13:54:58+00:00,+19145439989,www.brighteyesny.com,Sumati Deutscher,14c3edce-0d06-491d-95aa-b754c7596325
+Eye Rx Chevy Chase,"4600 North Park Avenue, Chevy Chase, MD 20815",Chevy Chase,MD,20815,No,Yes,No,2026-07-22T01:05:31+00:00,2026-07-25T13:10:49+00:00,+16592562807,https://www.eyerxchevychase.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp&utm_content=website_link,,bf0e7b11-ff24-4691-8312-159051386ff3
+Horvath Vision Care Northwoods,"180 Northwoods Boulevard, Columbus, OH 43235",Columbus,OH,43235,No,Yes,No,2026-07-23T00:58:32+00:00,2026-07-23T02:10:23+00:00,+18158814070,horvathvisionnorthwoods.com,Rebecca Lugar; Breanna Williams; Lara Leach; Katie Simonovich; Wasim Sleiman; Jamie Horvath; Mark Horvath,d8cf34c2-8ce1-4779-a532-c211d5d4d3c6
+Normandy Optical - Rochester,"137 South Livernois Road, Rochester Hills, MI 483071837",Rochester Hills,MI,483071837,No,Yes,No,2026-07-23T00:58:32+00:00,2026-07-29T13:54:58+00:00,+19129152663,https://www.normandyoptical.com/locations/rochester-hills,,659e088d-0fb5-4075-8576-cce22a27f0c3
+Spectrum Optical - Bridgeport Location,"45 Professional Place
+Suite 200, Bridgeport, WV 26330",Bridgeport,WV,26330,No,Yes,No,2026-07-14T02:12:15.966Z,2026-07-30T13:44:50+00:00,+13048234472,www.spectrumoptical.com,Tyler Kerr OD; Cynthia Zwolensky OD,4c722939-9d81-47d0-b105-d2aaa5e20fc0

@@ -1,0 +1,2 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Graystone Eye,"2640 North Carolina 105, Boone, NC 28607",Boone,NC,28607,No,Yes,Yes,2026-08-02T13:06:35+00:00,2026-08-02T13:06:35+00:00,+15074458153,graystone-eye.com,Kayli Standridge,b26df1c1-26ef-4b27-b9d8-7b169187c5ce

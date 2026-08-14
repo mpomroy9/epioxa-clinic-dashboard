@@ -1,0 +1,4 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Anh Nguyen Ophthalmology,"6402 Arlington Blvd / Suite 600, Falls Church, VA 22042",Falls Church,VA,22042,Yes,Yes,Yes,2026-08-14T12:51:38+00:00,2026-08-14T12:51:38+00:00,+17032238300,http://virginia-lasik.com/,,0aa96b67-1a7b-4d6d-a319-3947d55f7327
+"Eye Center, Inc.","2003 Cortez Road West, Bradenton, FL 34207",Bradenton,FL,34207,No,Yes,Yes,2026-08-14T12:51:38+00:00,2026-08-14T12:51:38+00:00,+19413930859,,Brad Laudicina; Madison Easterling,b705f866-4525-4838-a345-0586efcdd63e
+Kings Highway Vision Center,"1302 Kings Highway, Brooklyn, NY 11229",Brooklyn,NY,11229,No,Yes,Yes,2026-08-14T12:51:38+00:00,2026-08-14T12:51:38+00:00,+13186598780,https://www.kingshighwayvisioncenter.com/,Olga Alekberov,4a11aa6f-5ee2-4716-9341-016cd4dea5d5

@@ -1,0 +1,3 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Clinton Eye Associates,"116 E Main ST, Clinton, CT 06413",Clinton,CT,06413,No,Yes,Yes,2026-08-28T21:38:28+00:00,2026-08-28T21:38:28+00:00,+18606153787,https://www.clintoneye.com,,a1f929c0-ae7e-49d0-81ba-7a535ad43626
+Temecula Eye Center Optometry,"41720 Winchester Road D, Temecula, CA 92590",Temecula,CA,92590,No,Yes,Yes,2026-08-28T21:38:28+00:00,2026-08-28T21:38:28+00:00,+19513963911,https://www.temeculaeyecenter.net/,,ad8d1eed-e9b7-4b9b-a2e2-82a09e67094c

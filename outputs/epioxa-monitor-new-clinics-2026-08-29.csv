@@ -1,0 +1,2 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Appalachian Eye Care,"3082 Robert C Byrd Drive, Beckley, WV 25801",Beckley,WV,25801,No,Yes,Yes,2026-08-29T16:02:50+00:00,2026-08-29T16:02:50+00:00,+13049244230,,"Brad Lane OD, MBA, Med; Misty Lane OD; McKenzie Bright OD",fc4ed793-ebc7-4e00-9224-045e84c84ec4

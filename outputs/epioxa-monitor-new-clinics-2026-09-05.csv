@@ -1,0 +1,3 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Graystone Eye,"2060 Hickory Boulevard, Lenoir, NC 28645",Lenoir,NC,28645,No,Yes,Yes,2026-09-05T14:23:11+00:00,2026-09-05T14:23:11+00:00,+14423790166,graystone-eye.com,Jacob Keener; Heather Day,60dae10b-2a92-461f-ad97-1b41942412c7
+Old Towne Optometry,"18291 Imperial Highway, Yorba Linda, CA 92886",Yorba Linda,CA,92886,No,Yes,Yes,2026-09-05T14:23:11+00:00,2026-09-05T14:23:11+00:00,+12545876367,https://www.oldtowneoptometry.com/,,f682ef71-2ce5-47fe-83cd-c9e6ada9d7fa

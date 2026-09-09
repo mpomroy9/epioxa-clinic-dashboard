@@ -1,0 +1,13 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Chicago Arbor Eye Institute,"5086 North Elston Avenue, Chicago, IL 60630",Chicago,IL,60630,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+18624180878,,Jenna Pyle,a3e9d768-10c7-484d-8ca0-39776e999d52
+Chicago Arbor Eye Institute,"836 West Wellington Avenue, Chicago, IL 60657",Chicago,IL,60657,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+17738253562,,Jennifer Pyle; Allison Gottlieb,d6228f16-a087-48d0-872c-cf1109976ac3
+Chicago Arbor Eye Institute,"2640 W 183rd Street, Homewood, IL 60430",Homewood,IL,60430,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+17402793144,,Priyanka Patel,1d70824b-1460-4fc7-b2a9-d84e89d4280f
+Chicago Arbor Eye Institute,"11600 South Kedzie Avenue
+Suite C and H, Merrionette Park, IL 60803",Merrionette Park,IL,60803,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+15156797762,,Allison Gottlieb; Jenna Pyle; Priyanka Patel,fc5879bd-fc5e-465a-b9d5-38166bc99e51
+City Eyecare,"2812 North University Drive, Coral Springs, FL 33065",Coral Springs,FL,33065,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+19545196756,,Cheryl Lennard,9eb84d26-6c9c-4f71-bf92-cdd4e4993de0
+Easton Eye Care,"1560 East Oakland Park Boulevard, Oakland Park, FL 33334",Oakland Park,FL,33334,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+19547305781,,"Robert Easton, Jr",4d0b4c36-abff-4531-880f-9689d959f229
+Everything Eyes,"16950 Jog Road
+Suite 107-S, Delray Beach, FL 33446",Delray Beach,FL,33446,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+15612209063,,Amanda Golchin; Gustavo Garmizo,43c85c20-631f-4720-bfe6-c5585064d0d9
+Laguna Eye Care,"24100 El Toro Road Suite C, Laguna Woods, CA 92637",Laguna Woods,CA,92637,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+19496704049,www.lagunaeye.com,,95c1e01a-4687-4fd2-a477-74fb181be7d2
+UT Medicine Mitchel and Shannon Wong Eye Institute,"4900 Mueller Boulevard, Austin, TX 78723",Austin,TX,78723,Yes,No,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+12313896016,https://www.dellchildrens.net/,Gene Kim,2e53888c-fbe6-4cb1-a2e8-ce32693f9fd8
+Vansuch Vision,"315 East Katella Avenue, Orange, CA 92867",Orange,CA,92867,No,Yes,Yes,2026-09-09T15:44:51+00:00,2026-09-09T15:44:51+00:00,+17146227954,vansuchvision.com,,3e5e3430-3eb3-4edd-88f6-efbaf4b394b8

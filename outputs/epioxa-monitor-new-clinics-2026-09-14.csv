@@ -1,0 +1,4 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+New Vision Eyecare,"443 Cool Springs Boulevard
+#120, Franklin, TN 37067",Franklin,TN,37067,No,Yes,Yes,2026-09-14T17:24:53+00:00,2026-09-14T17:24:53+00:00,+16155607970,newvisioneyecaretn.com,Molly Pace; Austin Pace,282b052d-a8d1-440b-a8b8-c56a35440f1f
+UofM-Flint/Grand Blanc,"3181 East Grand Blanc Road, Grand Blanc, MI 48439",Grand Blanc,MI,48439,No,Yes,Yes,2026-09-14T17:24:53+00:00,2026-09-14T17:24:53+00:00,+18103799524,https://www.uofmhealth.org/locations-list/ophthalmology-clinic-kellogg-eye-center-grand-blanc,,ddfee051-5a15-4955-a095-072a9dd79151

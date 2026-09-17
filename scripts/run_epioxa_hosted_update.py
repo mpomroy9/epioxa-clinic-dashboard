@@ -89,6 +89,7 @@ def main():
     dashboard = OUTPUTS / "epioxa-dashboard.html"
     if dashboard.exists():
         shutil.copyfile(dashboard, ROOT / "index.html")
+    run(["npm", "run", "build"])
 
     summary = OUTPUTS / "epioxa-monitor-summary.txt"
     if summary.exists():
@@ -111,6 +112,7 @@ def main():
             "outputs/epioxa-monitor-summary.txt",
             "outputs/epioxa-monitor-new-since-baseline.csv",
             "outputs/epioxa-monitor-tracked-clinics.csv",
+            "outputs/epioxa-target-place-id-gaps.csv",
         ]
     )
     for path in sorted(OUTPUTS.glob("epioxa-monitor-new-clinics-*.csv")):

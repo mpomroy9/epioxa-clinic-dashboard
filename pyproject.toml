@@ -1,0 +1,9 @@
+[project]
+name = "epioxa-clinic-tracker"
+version = "0.1.0"
+description = "Daily Epioxa clinic monitor and static dashboard"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

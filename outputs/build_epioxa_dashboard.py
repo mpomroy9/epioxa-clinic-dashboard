@@ -114,6 +114,10 @@ def load_dashboard_data():
         "SELECT id, run_at, total_facilities, new_facilities, status FROM runs WHERE status IN ('complete', 'baseline') ORDER BY id DESC LIMIT 1"
     ).fetchone()
     latest_run_id = latest_run["id"] if latest_run else None
+    baseline_run = conn.execute(
+        "SELECT id FROM runs WHERE status = 'baseline' ORDER BY id LIMIT 1"
+    ).fetchone()
+    baseline_run_id = baseline_run["id"] if baseline_run else None
 
     latest_seen_ids = set()
     if latest_run_id:
@@ -137,6 +141,7 @@ def load_dashboard_data():
     asset_estimates = load_facility_asset_estimates()
     for facility in facilities:
         facility["currently_live"] = facility["id"] in latest_seen_ids
+        facility["is_baseline"] = facility["first_seen_run_id"] == baseline_run_id
         facility["center_type"] = (
             "Treatment + Detection"
             if facility["is_treatment_center"] and facility["is_detection_center"]
@@ -183,7 +188,7 @@ def load_dashboard_data():
             },
         )
         row["total_added"] += 1
-        if facility["first_seen_run_id"] == 1:
+        if facility["is_baseline"]:
             row["baseline_added"] += 1
         else:
             row["new_after_baseline"] += 1
@@ -242,7 +247,7 @@ def load_dashboard_data():
         "total_tracked_historically": len(facilities),
         "new_this_run": latest_run["new_facilities"] if latest_run else 0,
         "new_this_week": latest_week.get("new_after_baseline", 0),
-        "new_since_baseline": sum(1 for f in facilities if f["first_seen_run_id"] != 1),
+        "new_since_baseline": sum(1 for f in facilities if not f["is_baseline"]),
         "not_seen_latest_pull": sum(1 for f in facilities if not f["currently_live"]),
         "treatment_centers": sum(1 for f in facilities if f["is_treatment_center"]),
         "detection_centers": sum(1 for f in facilities if f["is_detection_center"]),
@@ -267,7 +272,12 @@ def load_dashboard_data():
 
 
 def render_dashboard(data):
-    payload = json.dumps(data, separators=(",", ":"))
+    payload = (
+        json.dumps(data, separators=(",", ":"))
+        .replace("&", "\\u0026")
+        .replace("<", "\\u003c")
+        .replace(">", "\\u003e")
+    )
     generated = html.escape(data["generated_at"])
     return f"""<!doctype html>
 <html lang="en">
@@ -845,7 +855,7 @@ def render_dashboard(data):
 
     const latestRunWeekStart = summary.latest_run_week_start || weekStart(summary.last_run);
     const newClinics = facilities
-      .filter(f => f.first_seen_run_id !== 1 && weekStart(f.first_seen_at) === latestRunWeekStart)
+      .filter(f => !f.is_baseline && weekStart(f.first_seen_at) === latestRunWeekStart)
       .sort((a, b) => String(b.first_seen_at).localeCompare(String(a.first_seen_at)) || String(a.name).localeCompare(String(b.name)));
     document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics first seen during week of ${{esc(latestRunWeekStart)}}`;
     document.getElementById('newClinicTable').innerHTML = newClinics.length ? newClinics.map(f => `
@@ -890,7 +900,7 @@ def render_dashboard(data):
           <td>${{esc(f.zip)}}</td>
           <td>${{esc(f.center_type)}}</td>
           <td>${{boolPill(f.currently_live)}}</td>
-          <td>${{f.first_seen_run_id === 1 ? '<span class="pill no">No</span>' : '<span class="pill new">Yes</span>'}}</td>
+          <td>${{f.is_baseline ? '<span class="pill no">No</span>' : '<span class="pill new">Yes</span>'}}</td>
           <td${{firstSeenClass(f)}}>${{esc(firstSeenDate(f))}}</td>
           <td>${{esc(shortDate(f.last_seen_at))}}</td>
           <td>${{esc(f.phone)}}</td>

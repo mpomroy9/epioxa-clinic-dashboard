@@ -1,0 +1,2 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+"Rockingham Eye Physicians and Associattes, P.C.","1690 Spring Port Drive, Harrisonburg, VA 22801",Harrisonburg,VA,22801,No,Yes,Yes,2026-09-19T15:10:28+00:00,2026-09-19T15:10:28+00:00,+15405466925,rockinghameyephysicians.net,"Evan Kaufman OD, FAAO, FNCLE; Tara McGehee MD",b9cd8d42-0517-44af-a4c0-8c45a62d1088

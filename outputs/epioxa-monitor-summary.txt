@@ -1,5 +1,5 @@
 Epioxa weekly clinic monitor
-Last run: 2026-09-20T15:15:11+00:00
+Last run: 2026-09-21T17:38:58+00:00
 Currently live in latest pull: 609
 Total tracked clinics historically: 616
 New clinics this run: 0
@@ -8,6 +8,7 @@ Previously tracked clinics not seen in latest pull: 7
 Clinics missing targeted place IDs: 193
 
 Recent runs:
+- 2026-09-21T17:38:58+00:00 | total 609 | new 0 | complete
 - 2026-09-20T15:15:11+00:00 | total 609 | new 0 | complete
 - 2026-09-19T15:10:28+00:00 | total 607 | new 1 | complete
 - 2026-09-18T15:37:16+00:00 | total 606 | new 13 | complete
@@ -17,4 +18,3 @@ Recent runs:
 - 2026-09-14T17:24:53+00:00 | total 539 | new 2 | complete
 - 2026-09-13T15:26:55+00:00 | total 533 | new 0 | complete
 - 2026-09-12T14:48:55+00:00 | total 537 | new 5 | complete
-- 2026-09-11T15:41:27+00:00 | total 538 | new 0 | complete

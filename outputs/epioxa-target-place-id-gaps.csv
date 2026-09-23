@@ -5,10 +5,10 @@ Amber Eyes,"6118 Southeast Federal Highway, Stuart, FL 34997",Stuart,FL,34997,20
 Anderson & Chhabra Eyecare Center- Tampa,"719 West Fletcher Avenue, Tampa, FL 33612",Tampa,FL,33612,2026-07-22T01:05:31+00:00,Yes,34b00054-59d4-4339-96d7-bc526ee61596
 Anderson & Chhabra EyeCare Center- Wesley Chapel,"3822 Turman Loop, Wesley Chapel, FL 33544",Wesley Chapel,FL,33544,2026-07-22T01:05:31+00:00,Yes,e2c336aa-dc9d-4a93-b5b7-2656ec3c3dae
 Anh Nguyen Ophthalmology,"6402 Arlington Blvd / Suite 600, Falls Church, VA 22042",Falls Church,VA,22042,2026-08-14T12:51:38+00:00,Yes,0aa96b67-1a7b-4d6d-a319-3947d55f7327
-Appalachian Eye Care,"3082 Robert C Byrd Drive, Beckley, WV 25801",Beckley,WV,25801,2026-08-29T16:02:50+00:00,No,fc4ed793-ebc7-4e00-9224-045e84c84ec4
+Appalachian Eye Care,"3082 Robert C Byrd Drive, Beckley, WV 25801",Beckley,WV,25801,2026-08-29T16:02:50+00:00,Yes,fc4ed793-ebc7-4e00-9224-045e84c84ec4
 Appalachian Eye Care,"206 Kinter Way, Pearisburg, VA 24134",Pearisburg,VA,24134,2026-09-10T15:39:58+00:00,Yes,ee528f6b-d526-41b7-84e2-242b6cac3694
 Appalachian Eye Care,"324 Oakvale Road
-Suite 100, Princeton, WV 24740",Princeton,WV,24740,2026-08-27T21:34:51+00:00,No,3d0eff50-72dc-4578-9d62-ae61d98b99b9
+Suite 100, Princeton, WV 24740",Princeton,WV,24740,2026-08-27T21:34:51+00:00,Yes,3d0eff50-72dc-4578-9d62-ae61d98b99b9
 Associates in Eyecare,"4500 E Cherry Creek South Dr, Denver, CO 80246",Denver,CO,80246,2026-09-15T16:02:11+00:00,Yes,50f3b069-2f8c-471b-b641-76b88acd3bb3
 Atlantic Eye Physicians,"1031 Farmington Avenue, Farmington, CT 06032",Farmington,CT,06032,2026-09-18T15:37:16+00:00,Yes,616b3cd4-74df-41de-ab09-2bee7da05c53
 Atrium Health Wake Forest Baptist Ophthalmology,"1565 North University Parkway, High Point, NC 27262",High Point,NC,27262,2026-09-17T16:02:09+00:00,Yes,723562b1-2ea2-4c8b-a388-bd60a0a7d28c
@@ -52,7 +52,7 @@ Eye Care Center of Northern Colorado,"1400 Dry Creek Dr., Longmont, CO 80503",Lo
 "Eye Center, Inc.","2003 Cortez Road West, Bradenton, FL 34207",Bradenton,FL,34207,2026-08-14T12:51:38+00:00,Yes,b705f866-4525-4838-a345-0586efcdd63e
 Eye Rx Chevy Chase,"4600 North Park Avenue, Chevy Chase, MD 20815",Chevy Chase,MD,20815,2026-07-22T01:05:31+00:00,Yes,bf0e7b11-ff24-4691-8312-159051386ff3
 Eye Theory Stone Oak,"115 North Loop 1604 East Suite 1103, San Antonio, TX 78232",San Antonio,TX,78232,2026-07-30T13:44:50+00:00,Yes,f5369969-e029-472d-8f94-dcefbff60020
-EyeCare Associates,"8436 Vaughn Road, Montgomery, AL 36117",Montgomery,AL,36117,2026-08-06T13:50:19+00:00,Yes,5fe5f676-3ac5-4f77-aad8-b5d357a2cd06
+EyeCare Associates,"8436 Vaughn Road, Montgomery, AL 36117",Montgomery,AL,36117,2026-08-06T13:50:19+00:00,No,5fe5f676-3ac5-4f77-aad8-b5d357a2cd06
 EyeCare Specialties Lincoln,"2943 Pine Lake Road, Lincoln, NE 68516",Lincoln,NE,68516,2026-08-22T12:25:34+00:00,Yes,cba2f288-c835-4582-9b29-f2e7b8134109
 Family Vision Center,"3175 South State Road 7, Wellington, FL 33449",Wellington,FL,33449,2026-07-25T13:10:49+00:00,Yes,6b732cfa-b72c-4226-85d9-8efaf125dd18
 First Sight Vision Care,"8115 Maple Lawn Boulevard, Fulton, MD 20759",Fulton,MD,20759,2026-08-05T13:52:29+00:00,Yes,a69316be-1995-446f-93d2-18f8b8c434d0
@@ -122,6 +122,7 @@ Northeast Ohio Eye Surgeons - N Canton,"6407 Frank Avenue Northwest, North Canto
 Northeast Ohio Eye Surgeons - Stow,"4227 Allen Road, Stow, OH 44224",Stow,OH,44224,2026-08-27T21:34:51+00:00,Yes,08136427-af40-4a02-9b9e-2ead8c6e9a69
 Northeast Ohio Eye Surgeons - Wadsworth,"1st Street, Wadsworth, OH 44281",Wadsworth,OH,44281,2026-08-27T21:34:51+00:00,Yes,d7923c30-6be2-49e0-8e61-b5b7cd068668
 Northern Virginia Doctors of Optometry - Rosslyn,"1700 North Moore Street, Arlington, VA 22209",Arlington,VA,22209,2026-09-01T15:54:53+00:00,Yes,51d936c9-746a-4360-961c-36f10c6f35d8
+NOVA Optique + Eyecare,"672 North Glebe Road, Arlington, VA 22203",Arlington,VA,22203,2026-09-23T15:55:31+00:00,Yes,caa1336f-8ca9-4f78-885a-2d831ba743a3
 OCLI Queens-Richmond Hill,"119-15 Atlantic Avenue, Queens, NY 11418",Queens,NY,11418,2026-08-27T21:34:51+00:00,Yes,0a7748dc-eabf-4910-9527-ec3c9a1cdc7d
 OCLI Vision New Haven County: East Haven,"317 Foxon Road, East Haven, CT 06513",East Haven,CT,06513,2026-07-22T01:05:31+00:00,Yes,ae0aa020-1354-4f43-aeaf-549651134c73
 OKO Medical Eyecare,"2500 North Harlem Avenue, Elmwood Park, IL 60707",Elmwood Park,IL,60707,2026-09-10T15:39:58+00:00,Yes,e4a9a0a3-d429-4611-b890-ff62864a7a3b
@@ -147,7 +148,7 @@ Rockford Eye & Laser Center,"4301 N Mulford Rd, Loves Park, IL 61111",Loves Park
 Rocky McAdams,"2120 Antilley Road, Abilene, TX 79606",Abilene,TX,79606,2026-09-18T15:37:16+00:00,Yes,ccb68d3d-f9a9-4792-9ccc-47429a4518d8
 Ross Eye Institute,"1176 Main Street, buffalo, NY 14209",buffalo,NY,14209,2026-08-19T12:33:15+00:00,Yes,77adaade-0ccc-4969-a1a2-60852761bbdf
 Saint Barnabas Health Ambulatory Care Center,"PO Box 337, West Long Branch, NJ 07764",West Long Branch,NJ,07764,2026-09-15T16:02:11+00:00,Yes,1f5fcce0-1a10-4a92-85cd-5f7dfcff13b7
-Sea Eye Care,"9573 Shore Drive STE E, Norfolk, VA 23518",Norfolk,VA,23518,2026-08-04T13:55:18+00:00,No,43b537e8-1173-40db-9754-a2b788e4f201
+Sea Eye Care,"9573 Shore Drive STE E, Norfolk, VA 23518",Norfolk,VA,23518,2026-08-04T13:55:18+00:00,Yes,43b537e8-1173-40db-9754-a2b788e4f201
 Select Eye Care,"8601 LaSalle Rd / Ste 108, Towson, MD 21286",Towson,MD,21286,2026-07-24T13:24:06+00:00,Yes,3686762a-f278-42e7-b596-1d2f0906c8f3
 Sevigny & Associates Eye Care- Avon Park,"2315 U.S. 27, Avon Park, FL 33825",Avon Park,FL,33825,2026-09-22T16:05:24+00:00,Yes,96d26687-b28f-484b-98b4-6cc4f13d29c9
 Sevigny & Associates Eye Care- Wauchula,"735 North 6th Avenue, Wauchula, FL 33873",Wauchula,FL,33873,2026-09-22T16:05:24+00:00,Yes,0da79f3d-7371-4c6d-89a6-325c3d9e759d
@@ -206,4 +207,4 @@ West Georgia Eye Care Center,"6600 Whittlesey Blvd / Building A, Columbus, GA 31
 Western University Eye Care Institute,"309 East 2nd Street, Pomona, CA 91766",Pomona,CA,91766,2026-08-27T21:34:51+00:00,Yes,aa4a919e-a68e-4a19-84fd-de942d5fec9c
 Wilmington Eye,"1176 East Cutlar Crossing, Leland, NC 28451",Leland,NC,28451,2026-08-27T21:34:51+00:00,Yes,7257b914-ce14-4a91-b35b-55455d94712b
 Wilmington Eye,"9020 Senca Drive, Wilmington, NC 28411",Wilmington,NC,28411,2026-08-27T21:34:51+00:00,Yes,e3cb8ad6-cb75-480e-8113-e7e9114b9f45
-WV Eye Consultants,"501 Summers Street, Charleston, WV 25301",Charleston,WV,25301,2026-09-02T15:47:33+00:00,Yes,63eedb97-8bca-49fb-8716-9259082b4535
+WV Eye Consultants,"501 Summers Street, Charleston, WV 25301",Charleston,WV,25301,2026-09-02T15:47:33+00:00,No,63eedb97-8bca-49fb-8716-9259082b4535

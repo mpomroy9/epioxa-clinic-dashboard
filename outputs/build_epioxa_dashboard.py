@@ -12,6 +12,7 @@ DB_PATH = ROOT / "epioxa-clinics-monitor.db"
 OUT_PATH = ROOT / "epioxa-dashboard.html"
 ASSET_WEEKLY_PATH = ROOT / "epioxa-buildout-by-week-asset-proxy.csv"
 ASSET_DETAIL_PATH = ROOT / "epioxa-clinics-with-asset-date-crosscheck.csv"
+CATCH_UP_GAP = timedelta(days=3)
 
 
 def parse_dt(value):
@@ -30,6 +31,31 @@ def week_start(value):
     dt = dt.astimezone(timezone.utc)
     monday = dt - timedelta(days=dt.weekday())
     return monday.date().isoformat()
+
+
+def find_catch_up_weeks(runs):
+    catch_up_weeks = {}
+    previous = None
+    for run in runs:
+        if run.get("status") != "complete":
+            continue
+        current = parse_dt(run.get("run_at"))
+        if not current:
+            continue
+        if current.tzinfo is None:
+            current = current.replace(tzinfo=timezone.utc)
+        else:
+            current = current.astimezone(timezone.utc)
+        if previous:
+            gap = current - previous
+            if gap >= CATCH_UP_GAP:
+                catch_up_weeks[week_start(run["run_at"])] = {
+                    "previous_run_at": previous.isoformat(),
+                    "recovery_run_at": current.isoformat(),
+                    "gap_days": int(gap.total_seconds() // 86400),
+                }
+        previous = current
+    return catch_up_weeks
 
 
 def run_query(conn, sql, params=()):
@@ -168,6 +194,7 @@ def load_dashboard_data():
         ORDER BY id
         """,
     )
+    catch_up_weeks = find_catch_up_weeks(runs)
 
     weekly_map = {}
     for facility in facilities:
@@ -213,9 +240,14 @@ def load_dashboard_data():
             "treatment_centers": row["new_treatment_centers"],
             "detection_centers": row["new_detection_centers"],
             "both_center_types": row["new_both_center_types"],
-            "source": "Official",
-            "source_detail": "Tracker first-seen date",
+            "source": "Official catch-up" if row["week_starting"] in catch_up_weeks else "Official",
+            "source_detail": (
+                f"First seen after {catch_up_weeks[row['week_starting']]['gap_days']}-day tracking gap"
+                if row["week_starting"] in catch_up_weeks
+                else "Tracker first-seen date"
+            ),
             "is_estimate": False,
+            "is_catch_up": row["week_starting"] in catch_up_weeks,
             "cumulative_buildout": 0,
         }
         for row in weekly
@@ -239,6 +271,7 @@ def load_dashboard_data():
         (row for row in weekly if row["week_starting"] == latest_run_week_start),
         {},
     )
+    latest_catch_up = catch_up_weeks.get(latest_run_week_start, {})
     current_facilities = [f for f in facilities if f["currently_live"]]
     summary = {
         "last_run": latest_run_at,
@@ -247,6 +280,9 @@ def load_dashboard_data():
         "total_tracked_historically": len(facilities),
         "new_this_run": latest_run["new_facilities"] if latest_run else 0,
         "new_this_week": latest_week.get("new_after_baseline", 0),
+        "latest_week_is_catch_up": bool(latest_catch_up),
+        "catch_up_gap_days": latest_catch_up.get("gap_days", 0),
+        "catch_up_previous_run_at": latest_catch_up.get("previous_run_at", ""),
         "new_since_baseline": sum(1 for f in facilities if not f["is_baseline"]),
         "not_seen_latest_pull": sum(1 for f in facilities if not f["currently_live"]),
         "treatment_centers": sum(1 for f in facilities if f["is_treatment_center"]),
@@ -785,8 +821,12 @@ def render_dashboard(data):
     document.getElementById('topLastRun').textContent = displayDateTime(summary.last_run);
     document.getElementById('lastRun').textContent = `Latest monitor run: ${{displayDateTime(summary.last_run)}}`;
 
+    const weeklyNewLabel = summary.latest_week_is_catch_up ? 'Clinics first seen in catch-up' : 'New clinics added this week';
+    const weeklyNewNote = summary.latest_week_is_catch_up
+      ? `Catch-up count after a ${{fmt(summary.catch_up_gap_days)}}-day tracking gap; these clinics were first observed this week but may have appeared earlier.`
+      : 'Clinics first seen this week that were not in the original baseline.';
     const metrics = [
-      ['New clinics added this week', summary.new_this_week, 'new'],
+      [weeklyNewLabel, summary.new_this_week, 'new'],
       ['New since baseline', summary.new_since_baseline, 'new'],
       ['Currently live', summary.currently_live_latest_pull, 'yes']
     ];
@@ -798,7 +838,7 @@ def render_dashboard(data):
     `).join('');
 
     const summaryRows = [
-      ['New clinics added this week', summary.new_this_week, 'Clinics first seen this week that were not in the original baseline.'],
+      [weeklyNewLabel, summary.new_this_week, weeklyNewNote],
       ['New clinics since baseline', summary.new_since_baseline, 'Clinics not present in the original 398-clinic baseline.'],
       ['Currently live in latest pull', summary.currently_live_latest_pull, 'Clinics returned by the most recent nationwide Epioxa pull.'],
       ['Previously tracked but not seen latest', summary.not_seen_latest_pull, 'Clinics in the database that did not appear in the latest pull.'],
@@ -832,7 +872,7 @@ def render_dashboard(data):
     const maxWeekly = Math.max(1, ...chartRows.map(row => row.clinics_added));
     const latestWeekCard = latestOfficialWeek ? `
       <div class="latest-week-card">
-        <div class="kicker">Latest official week</div>
+        <div class="kicker">Latest official week${{latestOfficialWeek.is_catch_up ? ' · catch-up' : ''}}</div>
         <div class="number">${{fmt(latestOfficialWeek.clinics_added)}}</div>
         <div><strong>${{esc(latestOfficialWeek.week_starting)}}</strong></div>
         <div class="detail">${{fmt(latestOfficialWeek.treatment_centers)}} treatment / ${{fmt(latestOfficialWeek.detection_centers)}} detection / ${{fmt(latestOfficialWeek.both_center_types)}} both</div>
@@ -843,7 +883,7 @@ def render_dashboard(data):
       <div class="bar-scroll" id="weeklyChartBars">
     ` + chartRows.map(row => `
       <div class="bar-row">
-        <span>${{esc(row.week_starting)}}${{row.is_estimate ? ' est.' : ''}}</span>
+        <span>${{esc(row.week_starting)}}${{row.is_estimate ? ' est.' : row.is_catch_up ? ' catch-up' : ''}}</span>
         <span class="bar-track"><span class="bar-fill ${{row.is_estimate ? 'estimated' : ''}}" style="width: ${{Math.max(4, Math.round(row.clinics_added / maxWeekly * 100))}}%"></span></span>
         <strong>${{fmt(row.clinics_added)}}</strong>
       </div>
@@ -857,7 +897,9 @@ def render_dashboard(data):
     const newClinics = facilities
       .filter(f => !f.is_baseline && weekStart(f.first_seen_at) === latestRunWeekStart)
       .sort((a, b) => String(b.first_seen_at).localeCompare(String(a.first_seen_at)) || String(a.name).localeCompare(String(b.name)));
-    document.getElementById('newClinicCount').textContent = `${{fmt(newClinics.length)}} clinics first seen during week of ${{esc(latestRunWeekStart)}}`;
+    document.getElementById('newClinicCount').textContent = summary.latest_week_is_catch_up
+      ? `${{fmt(newClinics.length)}} clinics first seen during catch-up week of ${{esc(latestRunWeekStart)}} after a ${{fmt(summary.catch_up_gap_days)}}-day tracking gap; this is not a confirmed weekly opening count.`
+      : `${{fmt(newClinics.length)}} clinics first seen during week of ${{esc(latestRunWeekStart)}}`;
     document.getElementById('newClinicTable').innerHTML = newClinics.length ? newClinics.map(f => `
       <tr>
         <td${{firstSeenClass(f)}}>${{esc(firstSeenDate(f))}}</td>

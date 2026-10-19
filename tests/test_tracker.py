@@ -262,6 +262,18 @@ class DashboardTests(unittest.TestCase):
         self.assertNotIn("</script><script>alert(1)</script>", rendered)
         self.assertIn("\\u003c/script\\u003e", rendered)
 
+    def test_catch_up_week_remains_marked_after_later_run(self):
+        runs = [
+            {"run_at": "2026-09-29T17:27:33+00:00", "status": "complete"},
+            {"run_at": "2026-10-19T22:08:09+00:00", "status": "complete"},
+            {"run_at": "2026-10-20T12:00:00+00:00", "status": "complete"},
+        ]
+
+        catch_up_weeks = dashboard.find_catch_up_weeks(runs)
+
+        self.assertEqual(set(catch_up_weeks), {"2026-10-19"})
+        self.assertEqual(catch_up_weeks["2026-10-19"]["gap_days"], 20)
+
 
 if __name__ == "__main__":
     unittest.main()

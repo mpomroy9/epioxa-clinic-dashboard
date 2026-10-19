@@ -1,35 +1,48 @@
 Clinic,Address,City,State,Zip,First seen by monitor,Currently live in latest run,Epioxa facility ID
 20/20 Eyecare,"9553 Fields Ertel Road, Loveland, OH 45140",Loveland,OH,45140,2026-08-08T12:34:16+00:00,No,f6ea1400-871b-480c-a63e-cf20614ab4ac
 4S Eyecare,"10531 4S Commons Drive Suite 168, San Diego, CA 92127",San Diego,CA,92127,2026-09-29T17:27:33+00:00,Yes,cbac821b-bcc2-48b9-ba39-a758104160c1
+Abessi Eye Care & Surgery,"3322 U.S. 22, Branchburg, NJ 08876",Branchburg,NJ,08876,2026-10-19T22:08:09+00:00,Yes,cbfd64cc-19fc-489e-b751-b48814795122
+Accurate Vision Clinic,"3401 Minnesota Drive, Anchorage, AK 99503",Anchorage,AK,99503,2026-10-19T22:08:09+00:00,Yes,0546ae45-ca32-477a-b232-763884030eec
 Advanced Vision Care,"2710 East Airline Road, Victoria, TX 77901",Victoria,TX,77901,2026-07-29T13:54:58+00:00,Yes,8656e976-a277-4c55-92cf-9b43c61637eb
 Amber Eyes,"6118 Southeast Federal Highway, Stuart, FL 34997",Stuart,FL,34997,2026-09-03T15:37:04+00:00,Yes,8a654f53-1e34-4710-b7b4-2911c8c2ba97
 Anderson & Chhabra Eyecare Center- Tampa,"719 West Fletcher Avenue, Tampa, FL 33612",Tampa,FL,33612,2026-07-22T01:05:31+00:00,Yes,34b00054-59d4-4339-96d7-bc526ee61596
 Anderson & Chhabra EyeCare Center- Wesley Chapel,"3822 Turman Loop, Wesley Chapel, FL 33544",Wesley Chapel,FL,33544,2026-07-22T01:05:31+00:00,Yes,e2c336aa-dc9d-4a93-b5b7-2656ec3c3dae
 Anh Nguyen Ophthalmology,"6402 Arlington Blvd / Suite 600, Falls Church, VA 22042",Falls Church,VA,22042,2026-08-14T12:51:38+00:00,Yes,0aa96b67-1a7b-4d6d-a319-3947d55f7327
+Antelope Valley Family Optometry,"2720 East Palmdale Boulevard, Palmdale, CA 93550",Palmdale,CA,93550,2026-10-19T22:08:09+00:00,Yes,fd232db1-6518-4458-ba73-0f2e7a064a3e
 Appalachian Eye Care,"3082 Robert C Byrd Drive, Beckley, WV 25801",Beckley,WV,25801,2026-08-29T16:02:50+00:00,Yes,fc4ed793-ebc7-4e00-9224-045e84c84ec4
 Appalachian Eye Care,"206 Kinter Way, Pearisburg, VA 24134",Pearisburg,VA,24134,2026-09-10T15:39:58+00:00,Yes,ee528f6b-d526-41b7-84e2-242b6cac3694
 Appalachian Eye Care,"324 Oakvale Road
 Suite 100, Princeton, WV 24740",Princeton,WV,24740,2026-08-27T21:34:51+00:00,Yes,3d0eff50-72dc-4578-9d62-ae61d98b99b9
+Associates in Eye Care,"155 Morris Avenue, Springfield Township, NJ 07081",Springfield Township,NJ,07081,2026-10-19T22:08:09+00:00,Yes,3986bfba-447e-4e97-976e-8383b619d000
 Associates in Eyecare,"4500 E Cherry Creek South Dr, Denver, CO 80246",Denver,CO,80246,2026-09-15T16:02:11+00:00,Yes,50f3b069-2f8c-471b-b641-76b88acd3bb3
+Atlanta Ophthalmology Associates,"5730 Glenridge Dr #120, Atlanta, GA 30328",Atlanta,GA,30328,2026-10-19T22:08:09+00:00,Yes,8ee1e210-d91d-4d6a-b8b5-f380eac3ad04
 Atlantic Eye Physicians,"1031 Farmington Avenue, Farmington, CT 06032",Farmington,CT,06032,2026-09-18T15:37:16+00:00,Yes,616b3cd4-74df-41de-ab09-2bee7da05c53
 Atrium Health Wake Forest Baptist Ophthalmology,"1565 North University Parkway, High Point, NC 27262",High Point,NC,27262,2026-09-17T16:02:09+00:00,Yes,723562b1-2ea2-4c8b-a388-bd60a0a7d28c
 Atwal Eye Care,"3095 Harlem Rd, Buffalo, NY 14225",Buffalo,NY,14225,2026-09-29T17:27:33+00:00,Yes,22df8dfe-b48f-48ee-9c80-01dc885ea6bc
 Augusta University,"1481 Laney Walker Blvd / AD-1400, Augusta, GA 30912",Augusta,GA,30912,2026-08-01T13:05:04+00:00,Yes,f2856736-0cb1-4dcf-85e8-5cd1a16fe50f
 Austin Optometry Group,"1 City Boulevard West #111, Orange, CA 92868",Orange,CA,92868,2026-08-22T12:25:34+00:00,Yes,100e7b42-5dbf-4b25-92f4-278f16a1c931
+BCS Eye Associates,"3201 University Drive East / Suite 445, Bryan, TX 77802",Bryan,TX,77802,2026-10-19T22:08:09+00:00,Yes,873d2882-0b6b-4708-8c11-a0bb41e1133b
 Beyond Vision Center,"6949 El Camino Real Suite 105, Carlsbad, CA 92011",Carlsbad,CA,92011,2026-09-03T15:37:04+00:00,Yes,beb8e92e-d7db-4228-81dc-a64abe198a75
 Beyond Vision Center- Encinitas,"205 South El Camino Real Suite A, Encinitas, CA 92024",Encinitas,CA,92024,2026-09-03T15:37:04+00:00,Yes,7511f147-892b-40cf-855d-ff86193694d6
 Black Hills Regional Eye Institute,"2800 Third St, Rapid City, SD 57701",Rapid City,SD,57701,2026-07-24T13:24:06+00:00,Yes,d937b227-2994-445c-aaf2-c188c5f0314f
+Bloomingdale Eye Care,"407 West Bloomingdale Avenue, Brandon, FL 33511",Brandon,FL,33511,2026-10-19T22:08:09+00:00,Yes,c8b31b7b-e03b-4307-9bb5-f5842753bb18
+Blue River Vision,"37 W 4th St, E126, Silverthorne, CO 80498",Silverthorne,CO,80498,2026-10-19T22:08:09+00:00,Yes,be9f38ec-5c81-4907-9ee6-3c831859d74a
 Boca Family Eye Care East,"1001 Southwest 2nd Avenue
 Suite 4000, Boca Raton, FL 33432",Boca Raton,FL,33432,2026-09-03T15:37:04+00:00,Yes,f22e981a-7988-4750-b2d3-fccbfddb513f
 Boca Family Eye Care West,"9858 Clint Moore Road, suite c107, Boca Raton, FL 33496",Boca Raton,FL,33496,2026-09-03T15:37:04+00:00,Yes,67193335-2b92-4d7c-b8f6-209d33c7ca27
+Boerne Vision Center,"124 East Bandera Road Suite 403, Boerne, TX 78006",Boerne,TX,78006,2026-10-19T22:08:09+00:00,Yes,bb8ca9b8-e67d-4a09-a619-50294f9874fc
 Boston Vision,"25 Marston Street
 Marston Medical Building Suite 104, Lawrence, MA 01841",Lawrence,MA,01841,2026-07-22T01:05:31+00:00,Yes,7e1a4622-6fec-4c38-9740-1a7949dbb98f
+Boulder Eye Surgeons,"101 Erie Parkway, Erie, CO 80516",Erie,CO,80516,2026-10-19T22:08:09+00:00,Yes,28314ffa-7758-4a71-bf7d-b4161adf07dc
 Box Eye Care,"5003 Oscar Baxter Drive, Tuscaloosa, AL 35405",Tuscaloosa,AL,35405,2026-09-12T14:48:55+00:00,Yes,0f18863d-5215-4aa1-acb2-50e711538aa9
 Bright Eyes Optical New Rochelle,"177 B East Main Street, New Rochelle, NY 10801",New Rochelle,NY,10801,2026-07-23T00:58:32+00:00,Yes,14c3edce-0d06-491d-95aa-b754c7596325
+Bubank Family Optometry,"1112 West Burbank Boulevard, Ste 204, Burbank, CA 91506",Burbank,CA,91506,2026-10-19T22:08:09+00:00,Yes,4bec005e-5361-4f55-9809-e6079efa692e
 California Oaks Vision Center,"24640 Jefferson Avenue Suite 100, Murrieta, CA 92562",Murrieta,CA,92562,2026-07-28T13:49:51+00:00,Yes,43bd3872-68d2-4a57-9304-fe839ecfe35f
+Cape Fear Catatract and Laser,"1915 South 17th Street / Suite 101, Wilmington, NC 28401",Wilmington,NC,28401,2026-10-19T22:08:09+00:00,Yes,4761ce3f-4f14-4c9c-a044-bf52713e46ff
 Carolina Vision Care,"1804 West Arlington Boulevard, Greenville, NC 27834",Greenville,NC,27834,2026-07-28T13:49:51+00:00,Yes,b4b695bc-589a-4037-8264-63ab49c650b9
 Center For Eye Care Excellence of Albany,"9 Vista Blvd / Suite 100, Slingerlands, NY 12159",Slingerlands,NY,12159,2026-09-29T17:27:33+00:00,Yes,5b3bdfaa-4111-47bc-a8ec-0bfe92bd294b
 Central Eyes North,"3188 Southwest Martin Downs Boulevard, Palm City, FL 34990",Palm City,FL,34990,2026-09-12T14:48:55+00:00,Yes,2883be45-1394-4707-b0f8-a0ad66ce15b4
+Cherry Creek Eye Physicians and Surgeons,"4999 E. Kentucky Ave / Unit 202, Denver, CO 80246",Denver,CO,80246,2026-10-19T22:08:09+00:00,Yes,4863e30c-5db9-4439-a7b1-813c438019a6
 Chicago Arbor Eye Institute,"5086 North Elston Avenue, Chicago, IL 60630",Chicago,IL,60630,2026-09-09T15:44:51+00:00,Yes,a3e9d768-10c7-484d-8ca0-39776e999d52
 Chicago Arbor Eye Institute,"836 West Wellington Avenue, Chicago, IL 60657",Chicago,IL,60657,2026-09-09T15:44:51+00:00,Yes,d6228f16-a087-48d0-872c-cf1109976ac3
 Chicago Arbor Eye Institute,"2640 W 183rd Street, Homewood, IL 60430",Homewood,IL,60430,2026-09-09T15:44:51+00:00,Yes,1d70824b-1460-4fc7-b2a9-d84e89d4280f
@@ -37,32 +50,52 @@ Chicago Arbor Eye Institute,"11600 South Kedzie Avenue
 Suite C and H, Merrionette Park, IL 60803",Merrionette Park,IL,60803,2026-09-09T15:44:51+00:00,Yes,fc5879bd-fc5e-465a-b9d5-38166bc99e51
 Chicago Arbor Eye Institute,"9731 W. 165th St / Ste 31, Orland Park, IL 60467",Orland Park,IL,60467,2026-07-30T13:44:50+00:00,Yes,2f14b003-ae25-44f5-bde9-a68eed1bf606
 City Eyecare,"2812 North University Drive, Coral Springs, FL 33065",Coral Springs,FL,33065,2026-09-09T15:44:51+00:00,Yes,9eb84d26-6c9c-4f71-bf92-cdd4e4993de0
-Clarity Eye Care,"1284 Dryden Rd, Ithaca, NY, NY 14850","Ithaca, NY",NY,14850,2026-09-29T17:27:33+00:00,Yes,b1f3f1ff-8ad9-4008-a959-a58a5973deb9
+Clarity Eye Care,"1284 Dryden Rd, Ithaca, NY, NY 14850","Ithaca, NY",NY,14850,2026-09-29T17:27:33+00:00,No,b1f3f1ff-8ad9-4008-a959-a58a5973deb9
 Clear Vision San Antonio - Stone Oak,"1314 East Sonterra Boulevard Suite 2103, San Antonio, TX 78258",San Antonio,TX,78258,2026-07-28T13:49:51+00:00,Yes,d473e426-57bd-4c64-a92e-7b006498bab9
 Clemmons Family Eye Care,"6301 Stadium Drive, Clemmons, NC 27012",Clemmons,NC,27012,2026-08-16T12:25:42+00:00,Yes,0cb4d713-6e72-404c-89d4-ee70fb0dfceb
 Clemson Eye,"22995 U.S. 76, Clinton, SC 29325",Clinton,SC,29325,2026-08-27T21:34:51+00:00,Yes,8c852a81-9fea-4184-842a-6a094c9ad6f5
 Clemson Eye,"USE 360 Pelham Road address, Greenville, SC 29607",Greenville,SC,29607,2026-09-17T16:02:09+00:00,Yes,59c44156-4fa8-4633-ab59-5e6833e55dd3
 Clinton Eye Associates,"116 E Main ST, Clinton, CT 06413",Clinton,CT,06413,2026-08-28T21:38:28+00:00,Yes,a1f929c0-ae7e-49d0-81ba-7a535ad43626
+Colorado Eye Surgeons,"3401 Quebec Street / Ste 4100, Denver, CO 80207",Denver,CO,80207,2026-10-19T22:08:09+00:00,Yes,2b66287a-9354-4cdd-a66c-279b8d36c1c4
 Commonwealth Eye Care Asssociates,"3855 Gaskins Rd., Henrico, VA 23233",Henrico,VA,23233,2026-09-18T15:37:16+00:00,Yes,caf8c947-c310-40df-9789-1be643facd5d
 Compton & Compton Eye Care,"1111 Nashville Road, Franklin, KY 42134",Franklin,KY,42134,2026-07-22T01:05:31+00:00,Yes,b767ecd4-1514-41cb-add4-82ffaa4cd7ae
+Cornea & Contact Lens Institute of MN,"5201 Eden Avenue #150, Edina, MN 55436",Edina,MN,55436,2026-10-19T22:08:09+00:00,Yes,e72bfb2d-bc7d-4d5d-8f5e-d9b034337222
+David Truong,"3900 N Tarrant Pkwy Suite 104, Fort Worth, TX 76244",Fort Worth,TX,76244,2026-10-19T22:08:09+00:00,Yes,262f7692-a2a6-4cc2-b0ad-d69f4f0b32ac
 Decatur Family Eye Care,"2026 6th Avenue Southeast, Decatur, AL 35601",Decatur,AL,35601,2026-09-17T16:02:09+00:00,Yes,0ce1c5ef-5375-4014-8565-5e1faae05d2e
+Del Mar Optometric,"1349 Camino Del Mar Suite C, Del Mar, CA 92014",Del Mar,CA,92014,2026-10-19T22:08:09+00:00,Yes,560d8698-16b0-41f9-b298-985fb2962e25
+Denver Eye Doctor,"7920 West 44th Avenue, Wheat Ridge, CO 80033",Wheat Ridge,CO,80033,2026-10-19T22:08:09+00:00,Yes,ae5afd43-3406-4774-b7b5-089bc5251fa0
 Dr Bradley Parsons,"2315 Edgewood Road Southwest, Cedar Rapids, IA 52404",Cedar Rapids,IA,52404,2026-09-15T16:02:11+00:00,Yes,a081483a-2f7e-4bb7-ad58-dc6aa0e1604a
+Dr. Emily Witsberger,"18200 Katy Fwy, Houston, TX 77094",Houston,TX,77094,2026-10-19T22:08:09+00:00,Yes,e2a41325-ed6d-41b8-837e-c2b8b0901f79
 Dr. Kazdan & Associates,"1671 penfield rd, Rochester, NY 14625",Rochester,NY,14625,2026-09-29T17:27:33+00:00,Yes,b8df9ae7-5559-48b0-99a2-c034db3cc83b
 Easton Eye Care,"1560 East Oakland Park Boulevard, Oakland Park, FL 33334",Oakland Park,FL,33334,2026-09-09T15:44:51+00:00,Yes,4d0b4c36-abff-4531-880f-9689d959f229
 Emplify Health,"3111 Gundersen Dr,, Onalaska, WI 54650",Onalaska,WI,54650,2026-08-11T12:49:25+00:00,Yes,e7e71751-216d-4e47-8586-8e62303e5da0
 Envision Eye Care,"2641 East Oakland Park Boulevard, Suite 3, Fort Lauderdale, FL 33306",Fort Lauderdale,FL,33306,2026-09-18T15:37:16+00:00,Yes,53d8320b-eef8-4e63-b221-271f4bb6b941
 Everything Eyes,"16950 Jog Road
 Suite 107-S, Delray Beach, FL 33446",Delray Beach,FL,33446,2026-09-09T15:44:51+00:00,Yes,43c85c20-631f-4720-bfe6-c5585064d0d9
+Eye Care Center of Northern Colorado,"3000 Center Green Drive, Boulder, CO 80301",Boulder,CO,80301,2026-10-19T22:08:09+00:00,Yes,70c35254-874b-4ddf-a551-54164320d21b
 Eye Care Center of Northern Colorado,"1400 Dry Creek Dr., Longmont, CO 80503",Longmont,CO,80503,2026-09-22T16:05:24+00:00,Yes,f148d6ab-9d2a-4877-a1be-645cc3c96e1e
+Eye Care Center of Northern Colorado (Loveland),"5250 Hahns Peak Drive, Loveland, CO 80538",Loveland,CO,80538,2026-10-19T22:08:09+00:00,Yes,62288dab-a17b-4c10-b6cb-270c4c3fb72f
+Eye Care Plus,"5221 Coulter Street South, Amarillo, TX 79119",Amarillo,TX,79119,2026-10-19T22:08:09+00:00,Yes,76bb44e3-9c7e-47ce-8190-a6c6b388ce23
+Eye Center South,"2020 Cattlemen Road, Sarasota, FL 34232",Sarasota,FL,34232,2026-10-19T22:08:09+00:00,Yes,c611d29f-baa4-4a30-9135-dda8a5db16b9
 "Eye Center, Inc.","2003 Cortez Road West, Bradenton, FL 34207",Bradenton,FL,34207,2026-08-14T12:51:38+00:00,Yes,b705f866-4525-4838-a345-0586efcdd63e
+Eye Clinic & Aesthetics of Utah,"2230 North University Parkway, Suite #10A, Provo, UT 84604",Provo,UT,84604,2026-10-19T22:08:09+00:00,Yes,58231404-7c97-4d3c-93c4-e593efc47a73
+Eye Foundation of Utah,"201 East 5900 South, Suite 201, Murray, UT 84107",Murray,UT,84107,2026-10-19T22:08:09+00:00,Yes,4fef8e10-766b-4cf0-8668-70f55fd8b978
+Eye Physicians of Central Florida,"790 Concourse Parkway South, Maitland, FL 32751",Maitland,FL,32751,2026-10-19T22:08:09+00:00,Yes,04e59fc4-4635-4fba-b3af-a3b0c7e9deb0
 Eye Rx Chevy Chase,"4600 North Park Avenue, Chevy Chase, MD 20815",Chevy Chase,MD,20815,2026-07-22T01:05:31+00:00,Yes,bf0e7b11-ff24-4691-8312-159051386ff3
+Eye Surgeons of Indiana,"9202 North Meridian Street, Indianapolis, IN 46260",Indianapolis,IN,46260,2026-10-19T22:08:09+00:00,Yes,825179b2-e10e-4fab-8b2b-0878e8703293
+Eye Surgical Associates,"1710 S 70th St., Lincoln, NE 68506",Lincoln,NE,68506,2026-10-19T22:08:09+00:00,Yes,c750f631-c90f-4618-95a0-16a155462ff2
 Eye Theory Stone Oak,"115 North Loop 1604 East Suite 1103, San Antonio, TX 78232",San Antonio,TX,78232,2026-07-30T13:44:50+00:00,Yes,f5369969-e029-472d-8f94-dcefbff60020
 EyeCare Associates,"8436 Vaughn Road, Montgomery, AL 36117",Montgomery,AL,36117,2026-08-06T13:50:19+00:00,No,5fe5f676-3ac5-4f77-aad8-b5d357a2cd06
+Eyecare Consultants,"8586 East Arapahoe Road, Centennial, CO 80112",Centennial,CO,80112,2026-10-19T22:08:09+00:00,Yes,aafc84c2-72aa-4adc-9868-a31ad05b4d08
 EyeCare Specialties Lincoln,"2943 Pine Lake Road, Lincoln, NE 68516",Lincoln,NE,68516,2026-08-22T12:25:34+00:00,Yes,cba2f288-c835-4582-9b29-f2e7b8134109
+EyeSight Hawaii,"650 Iwilei Rd., Honolulu, HI 96817",Honolulu,HI,96817,2026-10-19T22:08:09+00:00,Yes,f4d86eb8-50db-462f-a7fc-585e2a6c190f
+Faisal Haq,"2201 Westgate Plaza, Grapevine, TX 76051",Grapevine,TX,76051,2026-10-19T22:08:09+00:00,Yes,c4f92f03-c246-4213-8e22-3adfe87658b0
 Family Vision Center,"3175 South State Road 7, Wellington, FL 33449",Wellington,FL,33449,2026-07-25T13:10:49+00:00,Yes,6b732cfa-b72c-4226-85d9-8efaf125dd18
 "Fichte, Endl and Elmer Eyecare","2825 Niagara Falls Blvd Suite 130, Amherst, NY 14228",Amherst,NY,14228,2026-09-29T17:27:33+00:00,Yes,3c1419f5-1736-4aa6-a664-a58805b8a269
 First Sight Vision Care,"8115 Maple Lawn Boulevard, Fulton, MD 20759",Fulton,MD,20759,2026-08-05T13:52:29+00:00,Yes,a69316be-1995-446f-93d2-18f8b8c434d0
 Five Points Eyecare,"698 South Milledge Avenue, Athens, GA 30605",Athens,GA,30605,2026-08-27T21:34:51+00:00,Yes,bc201267-26a1-4267-b2b2-66a044fab7c9
+Forefront Eye Care,"99 Bedford Street
+Suite 102, Boston, MA 02111",Boston,MA,02111,2026-10-19T22:08:09+00:00,Yes,3aff3819-3db8-4e9f-89a9-c77e6f881d32
 Friedrichs Family Eye Center,"32 Main Street, Chatham, VA 24531",Chatham,VA,24531,2026-09-17T16:02:09+00:00,Yes,70931ce2-7ef7-4ad6-8226-f07a5cefb91c
 Friedrichs Family Eye Center,"723 Piney Forest Road
 Suite 103, Danville, VA 24540",Danville,VA,24540,2026-09-12T14:48:55+00:00,Yes,39f9ddbe-e409-414f-b736-3dbea9635f39
@@ -80,20 +113,33 @@ Gregory Nettune,"10740 N. Central Expressway / Ste 350, Dallas, TX 75231",Dallas
 Grene Vision Group,"1821 N Webb Rd, Wichita, KS 67206",Wichita,KS,67206,2026-08-22T12:25:34+00:00,Yes,c7216ffb-5b2b-48b3-9f05-7935b043b1ba
 Grin Eye Care Brookside,"520 East 63rd Street, Kansas City, MO 64110",Kansas City,MO,64110,2026-08-22T12:25:34+00:00,Yes,75655ec7-4f1e-4032-a345-1ba0cd2258cf
 GW Eye Associates,"7841 Fay Avenue, San Diego, CA 92037",San Diego,CA,92037,2026-08-11T12:49:25+00:00,Yes,ba25e340-1efb-40bf-bdbb-a5493545da5c
-Hill Vision Services,"12601 Olive Blvd, Creve Coeur, MO 63141",Creve Coeur,MO,63141,2026-08-27T21:34:51+00:00,Yes,c0c1b01b-1f74-43b6-ba2f-3efc659d8909
+Helix Eye Care,"2901 Carlson Drive, Hammond, IN 46323",Hammond,IN,46323,2026-10-19T22:08:09+00:00,Yes,f2590489-b148-4de7-a1f8-680fb667700f
+Helix Eye Care,"326 W US Hwy 30, Schererville, IN 46375",Schererville,IN,46375,2026-10-19T22:08:09+00:00,Yes,f82fe79f-82f2-4872-85d6-fbf7ceceb54c
+Highpoint Family Vision,"5433 Roberts Street, Shawnee, KS 66226",Shawnee,KS,66226,2026-10-19T22:08:09+00:00,Yes,10306635-0c59-44f6-a533-c3b6bbef58f4
+Hill Vision Services,"12601 Olive Blvd, Creve Coeur, MO 63141",Creve Coeur,MO,63141,2026-08-27T21:34:51+00:00,No,c0c1b01b-1f74-43b6-ba2f-3efc659d8909
 Hines Sight,"2480 S. Downing St / Ste G-30, Denver, CO 80210",Denver,CO,80210,2026-09-15T16:02:11+00:00,Yes,50a09e3d-c637-4110-a887-da945d795170
 Horvath Vision Care Northwoods,"180 Northwoods Boulevard, Columbus, OH 43235",Columbus,OH,43235,2026-07-23T00:58:32+00:00,Yes,d8cf34c2-8ce1-4779-a532-c211d5d4d3c6
+I-Care Optical,"5537 Sheldon Road, Tampa, FL 33615",Tampa,FL,33615,2026-10-19T22:08:09+00:00,Yes,f6c53d22-be74-4c85-b129-993e392f5cdf
+ICON Eyecare,"10520 El Diente Ct / Unit A, Englewood, CO 80112",Englewood,CO,80112,2026-10-19T22:08:09+00:00,Yes,6b7b6bcf-7aae-4259-84ef-722b900adb12
+ICON Eyecare,"350 Indiana Street, Golden, CO 80401",Golden,CO,80401,2026-10-19T22:08:09+00:00,Yes,59517814-7e77-4030-9668-dff1958ed068
+ICON Eyecare,"1000 Wellington Ave., Grand Junction, CO 81501",Grand Junction,CO,81501,2026-10-19T22:08:09+00:00,Yes,f31a1bc2-7dad-496a-9f62-cd98e8b8c069
 Idaho Eye and Laser Center,"2025 E 17th St., Idaho Falls, ID 83404",Idaho Falls,ID,83404,2026-08-27T21:34:51+00:00,Yes,9fa28ace-4e73-4b44-ac83-f77f735e4ada
 Idaho Eye and Laser Center,"1157 Call Place, Pocatello, ID 83201",Pocatello,ID,83201,2026-09-18T15:37:16+00:00,Yes,fafe1c71-6739-46b7-b09d-2c663dc9d026
+Idaho Eye and Laser Center,"491 First American Circle, Rexburg, ID 83440",Rexburg,ID,83440,2026-10-19T22:08:09+00:00,Yes,82b86243-1adc-4702-aeb5-54e55882d34d
 Idaho Eye and Laser Center,"426 Parkview Loop East, Twin Falls, ID 83301",Twin Falls,ID,83301,2026-08-27T21:34:51+00:00,Yes,50e28b7e-e758-4a9c-a37c-8fe26d13fd50
 Inclima Eye Care,"415 Main Street, West Haven, CT 06516",West Haven,CT,06516,2026-09-29T17:27:33+00:00,Yes,7e0aa61d-7b78-423e-87cf-3493f1c3d534
+Iowa Eye Care,"510 10th Street Southeast, Cedar Rapids, IA 52403",Cedar Rapids,IA,52403,2026-10-19T22:08:09+00:00,Yes,6700aa2a-7f6a-4995-a517-a5999bf3424e
 IU School of Optometry/Atwater Eye Care Center,"744 East Third Street, Bloomington, IN 47405",Bloomington,IN,47405,2026-09-22T16:05:24+00:00,Yes,488e6ef1-cece-4129-86c8-14398c7b011a
 Kaiser Santa Clara,"700 Lawrence Expwy, Santa Clara, CA 95051",Santa Clara,CA,95051,2026-09-15T16:02:11+00:00,Yes,6a9a90cf-4523-4db5-b6a8-95728d7fc318
+KeenEye Family Vision - Fillmore,"30 North Main Street, Fillmore, UT 84631",Fillmore,UT,84631,2026-10-19T22:08:09+00:00,Yes,44650d5f-b38d-4100-a3f7-94c7cfcca757
+KeenEye Family Vision - Provo,"2696 North University Avenue, #100A, Provo, UT 84604",Provo,UT,84604,2026-10-19T22:08:09+00:00,Yes,c68487c7-d9f5-4ab0-9dfa-52547f3eae9a
 Keratoconus Vision Center Orange County,"801 North Tustin Avenue Suite 404, Santa Ana, CA 92705",Santa Ana,CA,92705,2026-09-10T15:39:58+00:00,Yes,f9c7bf99-baa1-41dd-bbad-0bf33d1cee40
 Kings Highway Vision Center,"1302 Kings Highway, Brooklyn, NY 11229",Brooklyn,NY,11229,2026-08-14T12:51:38+00:00,Yes,4a11aa6f-5ee2-4716-9341-016cd4dea5d5
-Kirkwood Eye Associates,"200 South Kirkwood Road, Kirkwood, MO 63122",Kirkwood,MO,63122,2026-08-27T21:34:51+00:00,No,0d12550d-2052-4875-992c-fac72e717064
+Kirkwood Eye Associates,"200 South Kirkwood Road, Kirkwood, MO 63122",Kirkwood,MO,63122,2026-08-27T21:34:51+00:00,Yes,0d12550d-2052-4875-992c-fac72e717064
+Krall Eye Clinic,"1415 North Sanborn Boulevard, Mitchell, SD 57301",Mitchell,SD,57301,2026-10-19T22:08:09+00:00,Yes,9150237a-3c2c-4e00-bbeb-59cfa51c438e
 La Mesa Vision Care,"8007 La Mesa Boulevard, La Mesa, CA 91942",La Mesa,CA,91942,2026-09-10T15:39:58+00:00,Yes,8c513f79-e8dd-4b3e-9fa9-548b48b07d1f
 Laguna Eye Care,"24100 El Toro Road Suite C, Laguna Woods, CA 92637",Laguna Woods,CA,92637,2026-09-09T15:44:51+00:00,Yes,95c1e01a-4687-4fd2-a477-74fb181be7d2
+Lake Austin Eye,"3944 RR620 South, Austin, TX 78738",Austin,TX,78738,2026-10-19T22:08:09+00:00,Yes,3160eecd-e7cd-4c0b-af2f-5b2cf2ebd568
 Lake Vision Optometry,"25321 Railroad Canyon Road #503, Lake Elsinore, CA 92532",Lake Elsinore,CA,92532,2026-08-27T21:34:51+00:00,Yes,dac01437-691d-45f7-bd20-123592947c65
 Laser Vision Correction Center of New Jersey,"16 South Jefferson Road, Hanover, NJ 07981",Hanover,NJ,07981,2026-08-01T13:05:04+00:00,Yes,867ed5f7-48e9-4546-86ab-1b6fc55eea49
 Lenscrafters Cascade Station,"10021 Northeast Cascades Parkway, Portland, OR 97220",Portland,OR,97220,2026-08-04T13:55:18+00:00,Yes,32430a76-608f-4664-bc8f-d0a54af2a42c
@@ -101,8 +147,11 @@ Lifetime Optometry,"1400 West 6th Street Suite 101, Corona, CA 92882",Corona,CA,
 Lighthouse Vision,"50 Cherry ST, Milford, CT 06460",Milford,CT,06460,2026-09-29T17:27:33+00:00,Yes,90ba1f38-58fe-4ac2-afc1-019d38c7b522
 Linden Optometry,"477 E Colorado Blvd, Pasadena, CA 91101",Pasadena,CA,91101,2026-09-10T15:39:58+00:00,Yes,6a4acf9d-fa15-443b-a641-8c1933969af3
 Littleton Family Eyecare,"1869 West Littleton Boulevard, Littleton, CO 80120",Littleton,CO,80120,2026-08-01T13:05:04+00:00,Yes,76898d3a-9d8e-4ea4-ad90-cfdf01af95f7
+LoHi Eye Care and Eyewear,"2040 West 30th Avenue, Denver, CO 80211",Denver,CO,80211,2026-10-19T22:08:09+00:00,Yes,a0c03cee-cce4-4897-9820-982b1d4ff409
 Look Optometric,"17400 Irvine Boulevard Suite N, Tustin, CA 92780",Tustin,CA,92780,2026-08-27T21:34:51+00:00,Yes,c60afcb2-5c5b-44f0-ba8c-8b30bd6de6c6
+Marano Eye Care,"200 S Orange Ave, Suite 209, Livingston, NJ 07039",Livingston,NJ,07039,2026-10-19T22:08:09+00:00,Yes,482803b2-b11d-43d5-8b6f-f1e2ffd0b3be
 Marietta Eye Clinic/Cumming,"2860 Ronald Reagan Boulevard, Cumming, GA 30041",Cumming,GA,30041,2026-09-17T16:02:09+00:00,Yes,343dfbab-f005-4a63-811f-60f2c5e2a98c
+Mason Eye Clinic-East- University of Missouri,"2401 Lemone Ind Blvd., Columbia, MO 65201",Columbia,MO,65201,2026-10-19T22:08:09+00:00,Yes,e7d99510-71d8-4b78-85ab-abd2ea51d562
 McKnight Eye Centers Hunkeler South,"7950 College Boulevard, Overland Park, KS 66210",Overland Park,KS,66210,2026-09-17T16:02:09+00:00,Yes,7525699d-5101-4213-8371-e3ef30a3f1da
 Meadows Eye Physicians and Surgeons,"7190 Smoke Ranch Road, Las Vegas, NV 89128",Las Vegas,NV,89128,2026-08-21T12:33:35+00:00,Yes,e16b1640-2e00-43de-ada5-5399df17fd85
 Medical University of South Carolina,"167 Ashley Avenue, Charleston, SC 29425",Charleston,SC,29425,2026-08-27T21:34:51+00:00,Yes,3b54dccd-e28a-4dc3-a372-84c7afab1047
@@ -110,20 +159,26 @@ Menard Eye Center,"4315 Lake Street, Lake Charles, LA 70605",Lake Charles,LA,706
 Michigan Eye Institute - Lake Orion,"1240 South Lapeer Road, Orion Township, MI 48360",Orion Township,MI,48360,2026-08-01T13:05:04+00:00,Yes,43996f7e-00cc-4dc7-b631-b321f6d0b7cb
 Midwestern University Eye Clinic,"5865 West Uptopia Road, Glendale, AZ 85308",Glendale,AZ,85308,2026-08-01T13:05:04+00:00,Yes,959ccbee-0230-49e5-b33d-ac025f5a7854
 Midwestern University Optical,"19555 N 59th Ave, Glendale, AZ 85308",Glendale,AZ,85308,2026-07-31T13:50:30+00:00,Yes,8c686c4f-f8f8-443e-ac5c-0a2ff1774650
+Mile High Eye Institute- Castle Rock,"3740 Dacoro Lane, Castle Rock, CO 80109",Castle Rock,CO,80109,2026-10-19T22:08:09+00:00,Yes,27effa9e-17c6-40ff-8059-32a1cbd3eb21
+Mile High Eye Institute- Lakewood,"355 Union Boulevard, Lakewood, CO 80228",Lakewood,CO,80228,2026-10-19T22:08:09+00:00,Yes,770a452a-b38d-4669-bfc6-f9ccdc949ffa
 Modern Eyes Optometry - Lenscrafters at Pearlridge,"98-1005 Moanalua Road, Aiea, HI 96701",Aiea,HI,96701,2026-07-22T01:05:31+00:00,Yes,d97fe7b8-db20-409f-b3b6-4a06d2949b9b
 Mount Airy Medical Eye Center,"1401 Ridge Court, Mount Airy, MD 21771",Mount Airy,MD,21771,2026-07-22T01:05:31+00:00,Yes,c6c40821-4a07-4499-af23-63a523db30b1
+Mountain View Vision Center,"1166 Utah 118, Richfield, UT 84701",Richfield,UT,84701,2026-10-19T22:08:09+00:00,Yes,27e8870d-d93d-4a26-87c2-8eca7a86669a
+Murray Vision Center,"126 East 4800 South, Murray, UT 84107",Murray,UT,84107,2026-10-19T22:08:09+00:00,Yes,10532f49-9ab9-4378-a4eb-ab41aad0bae8
 Murrieta Creek Optometry,"39252 Winchester Road, Murrieta, CA 92563",Murrieta,CA,92563,2026-08-27T21:34:51+00:00,Yes,be214a54-0477-4378-b84a-aeb7449e74ab
 MyEyeDr. / AL-Decatur,"823 6th Avenue Southeast, Decatur, AL 35601",Decatur,AL,35601,2026-09-17T16:02:09+00:00,Yes,2a3ce1f2-a469-4d27-887f-c5a08fa63d7e
 Nashville Eye Group,"5429 Edmondson Pike, Nashville, TN 37211",Nashville,TN,37211,2026-09-17T16:02:09+00:00,Yes,d43f0327-737f-42b7-9797-87a2baa63272
 Nassau County: Valley Stream OCLI,"70 East Sunrise Highway / Ste 400, Valley Stream, NY 11581",Valley Stream,NY,11581,2026-09-18T15:37:16+00:00,Yes,9d574582-1fd4-40a1-bf6f-fbd24653c5d3
-NEOES -Streetsboro,"1155 Ohio 303, Streetsboro, OH 44241",Streetsboro,OH,44241,2026-08-27T21:34:51+00:00,Yes,3d823915-9adb-464b-8437-6b70dae999af
+NECO Center for Eye Care Commonwealth,"424 Beacon St, Boston, MA 02115",Boston,MA,02115,2026-10-19T22:08:09+00:00,Yes,a663eba5-fa3b-465d-bf7b-c37ca3bc6f8f
+NEOES -Streetsboro,"1155 Ohio 303, Streetsboro, OH 44241",Streetsboro,OH,44241,2026-08-27T21:34:51+00:00,No,3d823915-9adb-464b-8437-6b70dae999af
 New Vision Eyecare,"443 Cool Springs Boulevard
 #120, Franklin, TN 37067",Franklin,TN,37067,2026-09-14T17:24:53+00:00,Yes,282b052d-a8d1-440b-a8b8-c56a35440f1f
+New Vision Optometry,"2201 West Olive Avenue, Burbank, CA 91506",Burbank,CA,91506,2026-10-19T22:08:09+00:00,Yes,ea33d2f3-f7e8-48dd-98e0-f1926a55b2f1
 Nolo Eye Care,"7180 Nolensville Road
 Suite 1E, Nolensville, TN 37135",Nolensville,TN,37135,2026-09-16T15:55:29+00:00,Yes,7213ae3d-b801-45cd-ab2f-5db0299b0133
 Normandy Optical - Rochester,"137 South Livernois Road, Rochester Hills, MI 483071837",Rochester Hills,MI,483071837,2026-07-23T00:58:32+00:00,Yes,659e088d-0fb5-4075-8576-cce22a27f0c3
 North Georgia Eye Associates/Cumming,"1230 Bald Ridge Marina Road, Cumming, GA 30040",Cumming,GA,30040,2026-09-18T15:37:16+00:00,Yes,bb9e641b-ad08-4759-972d-bf2eeeb30c4f
-Northeast Ohio Eye Surgeons - Akron (Valley),"1558 Akron Peninsula Road, Akron, OH 44313",Akron,OH,44313,2026-08-27T21:34:51+00:00,Yes,8b829332-0a0d-4989-b3f2-5d2dcf77063b
+Northeast Ohio Eye Surgeons - Akron (Valley),"1558 Akron Peninsula Road, Akron, OH 44313",Akron,OH,44313,2026-08-27T21:34:51+00:00,No,8b829332-0a0d-4989-b3f2-5d2dcf77063b
 Northeast Ohio Eye Surgeons - Canton 1,"800 McKinley Avenue Northwest, Canton, OH 44703",Canton,OH,44703,2026-08-27T21:34:51+00:00,Yes,c29dcf26-6242-4a8d-b136-1b1330c40621
 Northeast Ohio Eye Surgeons - Kent,"2103 Ohio 59, Kent, OH 44240",Kent,OH,44240,2026-08-27T21:34:51+00:00,Yes,8489c8d6-8279-4b2c-93e8-d0bb3b0f3e8a
 Northeast Ohio Eye Surgeons - Medina,"3583 Reserve Commons Drive, Medina, OH 44256",Medina,OH,44256,2026-08-27T21:34:51+00:00,Yes,ce5ef811-5075-450d-90d2-9fda28778c31
@@ -133,38 +188,58 @@ Northeast Ohio Eye Surgeons - Stow,"4227 Allen Road, Stow, OH 44224",Stow,OH,442
 Northeast Ohio Eye Surgeons - Wadsworth,"1st Street, Wadsworth, OH 44281",Wadsworth,OH,44281,2026-08-27T21:34:51+00:00,Yes,d7923c30-6be2-49e0-8e61-b5b7cd068668
 Northern Virginia Doctors of Optometry - Rosslyn,"1700 North Moore Street, Arlington, VA 22209",Arlington,VA,22209,2026-09-01T15:54:53+00:00,Yes,51d936c9-746a-4360-961c-36f10c6f35d8
 NOVA Optique + Eyecare,"672 North Glebe Road, Arlington, VA 22203",Arlington,VA,22203,2026-09-23T15:55:31+00:00,Yes,caa1336f-8ca9-4f78-885a-2d831ba743a3
+NVISION,"5701 Time Square, Amarillo, TX 79119",Amarillo,TX,79119,2026-10-19T22:08:09+00:00,Yes,70b27c8a-e3b3-46d8-9eb9-73d22e227663
 OCLI Queens-Richmond Hill,"119-15 Atlantic Avenue, Queens, NY 11418",Queens,NY,11418,2026-08-27T21:34:51+00:00,Yes,0a7748dc-eabf-4910-9527-ec3c9a1cdc7d
+OCLI Vision - Morristown,"131 Madison Avenue #130, Morristown, NJ 07960",Morristown,NJ,07960,2026-10-19T22:08:09+00:00,Yes,48c63aac-6fe8-4675-99f6-bd4fa807b724
 OCLI Vision New Haven County: East Haven,"317 Foxon Road, East Haven, CT 06513",East Haven,CT,06513,2026-07-22T01:05:31+00:00,Yes,ae0aa020-1354-4f43-aeaf-549651134c73
 OKO Medical Eyecare,"2500 North Harlem Avenue, Elmwood Park, IL 60707",Elmwood Park,IL,60707,2026-09-10T15:39:58+00:00,Yes,e4a9a0a3-d429-4611-b890-ff62864a7a3b
 Old Towne Optometry,"18291 Imperial Highway, Yorba Linda, CA 92886",Yorba Linda,CA,92886,2026-09-05T14:23:11+00:00,Yes,f682ef71-2ce5-47fe-83cd-c9e6ada9d7fa
 Omaha Eye & Laser Institute,"11606 Nicholas St / Ste 200, Omaha, NE 68154",Omaha,NE,68154,2026-09-12T14:48:55+00:00,Yes,44d72d75-6d64-4301-a903-9faa03e4694e
 Oman Eye Care,"100 West Cornwallis Drive Unit J, Greensboro, NC 27408",Greensboro,NC,27408,2026-09-17T16:02:09+00:00,Yes,16a2bd74-ef8c-46f4-95f2-8d62c8ce0b71
+OMNI Eye Specialists,"55 Madison St., Denver, CO 80206",Denver,CO,80206,2026-10-19T22:08:09+00:00,Yes,96c0d31b-5665-4041-b99e-39634fa4c628
+Ophthalmic Associates,"542 West 2nd Ave, Anchorage, AK 99501",Anchorage,AK,99501,2026-10-19T22:08:09+00:00,Yes,8e40ca1b-32ce-491f-850d-42448c9860eb
 Ophthalmic Partners,"775 East Route 70, Marlton, NJ 08053",Marlton,NJ,08053,2026-08-06T13:50:19+00:00,Yes,41ae30bd-c443-46a2-a96e-3d65ece6f97c
-Ophthalmology Consultants,"12990 Manchester Road / Suite 201, St Louis, MO 63131",St Louis,MO,63131,2026-08-27T21:34:51+00:00,No,6130f387-d5ed-4081-bfe1-f2ac54527706
+Ophthalmology Consultants,"12990 Manchester Road / Suite 201, Des Peres, MO 63131",Des Peres,MO,63131,2026-08-27T21:34:51+00:00,Yes,6130f387-d5ed-4081-bfe1-f2ac54527706
 Optical Illusions San Jose,"377 Santana Row, Suite #1115, San Jose, CA 95128",San Jose,CA,95128,2026-07-30T13:44:50+00:00,Yes,0ad7858b-c125-43f8-8af1-fc53f72d7d23
 Optical Illusions San Mateo,"194 West Hillsdale Boulevard, San Mateo, CA 94403",San Mateo,CA,94403,2026-07-29T13:54:58+00:00,Yes,1629d45b-294f-4b14-aaf4-b8463b4a2010
 Optical Illusions San Ramon,"6000 Bollinger Canyon Road, Suite #1104, San Ramon, CA 94583",San Ramon,CA,94583,2026-07-30T13:44:50+00:00,Yes,c42c2a65-5681-4e90-8010-ea64c4c353b8
 Optum Pediatric Opthalmology,"146 Manetto Hill Road, Plainview, NY 11803",Plainview,NY,11803,2026-08-27T21:34:51+00:00,Yes,5a0d2968-7052-4507-9824-e4e760ddc9a2
+Orem Eye Clinic,"742 North 530 East, Orem, UT 84097",Orem,UT,84097,2026-10-19T22:08:09+00:00,Yes,b734758b-7b78-4384-97de-e272ca7e0a01
 Palmer Eye Care,"17510 Provost Street Suite 103, Lake Oswego, OR 97034",Lake Oswego,OR,97034,2026-08-27T21:34:51+00:00,Yes,a3abc078-c9c6-4343-ac40-00f5354f114a
+Personal Care Optometry,"20121 Ventura Boulevard #102, Los Angeles, CA 91364",Los Angeles,CA,91364,2026-10-19T22:08:09+00:00,Yes,57488b68-4d1c-48cb-b732-4908f1834dc8
+Piedmont EyeCare- Blakeney,"8811 Blakeney Professional Drive, Charlotte, NC 28277",Charlotte,NC,28277,2026-10-19T22:08:09+00:00,Yes,9c261725-7044-4671-8bce-1ff64b31ee22
+Piedmont EyeCare- Wesley Chapel,"5955 Weddington Road
+Suite 102, Matthews, NC 28104",Matthews,NC,28104,2026-10-19T22:08:09+00:00,Yes,8f4dedec-0e66-4da6-8bc6-edf2c4640a08
 Professional Optometry Vision Care,"77 Veterans Memorial Highway, Commack, NY 11725",Commack,NY,11725,2026-08-27T21:34:51+00:00,Yes,a6611a0c-f326-458f-b64e-8534daaecf71
+Professional Vision,"8450 Baltimore National Pike, Ellicott City, MD 21043",Ellicott City,MD,21043,2026-10-19T22:08:09+00:00,Yes,2b9dcc96-5463-4dfa-a52b-b8576fb0049e
 Professional Vision Care- Westerville,"185 South State Street, Westerville, OH 43081",Westerville,OH,43081,2026-08-09T12:37:07+00:00,Yes,7ed7bd85-469b-4ea2-9ea0-a3e0dd4d4bd3
 Raincross Optometry,"3297 Arlington Avenue, Riverside, CA 92506",Riverside,CA,92506,2026-09-22T16:05:24+00:00,Yes,d34b6a23-02ad-4080-a19c-f3f357b51bcb
 Refocus Waterbury,"87 Grandview Ave, Waterbury, CT 06708",Waterbury,CT,06708,2026-09-18T15:37:16+00:00,Yes,b6eb87d8-2c4a-4c40-b421-0fd8f7578a04
 Renaissance Eye Care,"1593 Darby Drive, Florence, AL 35630",Florence,AL,35630,2026-09-18T15:37:16+00:00,Yes,aef15922-7d7d-4548-b933-539f62957e7a
+Richard Chu,"3105 East Southlake Boulevard, Southlake, TX 76092",Southlake,TX,76092,2026-10-19T22:08:09+00:00,Yes,82839ea2-3260-4382-8a55-6434b83d4b4a
 Richlin Eye,"8907 Wilshire Boulevard, Beverly Hills, CA 90211",Beverly Hills,CA,90211,2026-09-18T15:37:16+00:00,Yes,e10f3dcf-1681-4050-8549-988faa4f8c94
 Riverwoods Eye Center,"280 W River Park Dr / Suite 220, Provo, UT 84604",Provo,UT,84604,2026-08-27T21:34:51+00:00,Yes,d2069ee0-9c0c-49ad-953b-cbccc1c616d3
 Rockford Eye & Laser Center,"4301 N Mulford Rd, Loves Park, IL 61111",Loves Park,IL,61111,2026-09-22T16:05:24+00:00,Yes,60039baa-4dda-43ac-aef4-f723aa006598
 "Rockingham Eye Physicians and Associattes, P.C.","1690 Spring Port Drive, Harrisonburg, VA 22801",Harrisonburg,VA,22801,2026-09-19T15:10:28+00:00,Yes,b9cd8d42-0517-44af-a4c0-8c45a62d1088
 Rocky McAdams,"2120 Antilley Road, Abilene, TX 79606",Abilene,TX,79606,2026-09-18T15:37:16+00:00,Yes,ccb68d3d-f9a9-4792-9ccc-47429a4518d8
+Rocky McAdams,"2403 9th Street, Wichita Falls, TX 76301",Wichita Falls,TX,76301,2026-10-19T22:08:09+00:00,Yes,071797ec-e1c5-4432-9367-0e813bf643a7
 Ross Eye Institute,"1176 Main Street, buffalo, NY 14209",buffalo,NY,14209,2026-08-19T12:33:15+00:00,Yes,77adaade-0ccc-4969-a1a2-60852761bbdf
 Saint Barnabas Health Ambulatory Care Center,"PO Box 337, West Long Branch, NJ 07764",West Long Branch,NJ,07764,2026-09-15T16:02:11+00:00,Yes,1f5fcce0-1a10-4a92-85cd-5f7dfcff13b7
-Sea Eye Care,"9573 Shore Drive STE E, Norfolk, VA 23518",Norfolk,VA,23518,2026-08-04T13:55:18+00:00,Yes,43b537e8-1173-40db-9754-a2b788e4f201
+Sansbury Eye Center,"121 Lucy Lane, Columbia, SC 29229",Columbia,SC,29229,2026-10-19T22:08:09+00:00,Yes,d37dee4e-e156-412f-873b-28492668a851
+Sea Eye Care,"9573 Shore Drive STE E, Norfolk, VA 23518",Norfolk,VA,23518,2026-08-04T13:55:18+00:00,No,43b537e8-1173-40db-9754-a2b788e4f201
+See Sharp Eyewear,"824 Franklin Park Dr, East Syracuse, NY 13057",East Syracuse,NY,13057,2026-10-19T22:08:09+00:00,Yes,e6b3e3ac-a785-42c8-a24f-b19b8d2f5492
+Seeta Eye,"27 Davis Avenue, Poughkeepsie, NY 12603",Poughkeepsie,NY,12603,2026-10-19T22:08:09+00:00,Yes,6ec1e0d5-e231-41ee-b7e3-f6d691f8f60d
 Select Eye Care,"8601 LaSalle Rd / Ste 108, Towson, MD 21286",Towson,MD,21286,2026-07-24T13:24:06+00:00,Yes,3686762a-f278-42e7-b596-1d2f0906c8f3
 Sevigny & Associates Eye Care- Avon Park,"2315 U.S. 27, Avon Park, FL 33825",Avon Park,FL,33825,2026-09-22T16:05:24+00:00,Yes,96d26687-b28f-484b-98b4-6cc4f13d29c9
-Sevigny & Associates Eye Care- Wauchula,"735 North 6th Avenue, Wauchula, FL 33873",Wauchula,FL,33873,2026-09-22T16:05:24+00:00,Yes,0da79f3d-7371-4c6d-89a6-325c3d9e759d
+Sevigny & Associates Eye Care- Wauchula,"735 North 6th Avenue, Wauchula, FL 33873",Wauchula,FL,33873,2026-09-22T16:05:24+00:00,No,0da79f3d-7371-4c6d-89a6-325c3d9e759d
+Sevigny and Associates Eyecare- Arcadia,"810 North Mills Avenue, Arcadia, FL 34266",Arcadia,FL,34266,2026-10-19T22:08:09+00:00,Yes,64f37aaf-c5ea-4d6c-a61a-56609ff87dfe
+Sevigny and Associates Eyecare- Lake Placid,"27 U.S. 27, Lake Placid, FL 33852",Lake Placid,FL,33852,2026-10-19T22:08:09+00:00,Yes,6ece64e1-4186-453b-9a48-5a9a2d835853
+Sevigny and Associates Eyecare- Sebring,"363 U.S. Highway 27 South, Sebring, FL 33870",Sebring,FL,33870,2026-10-19T22:08:09+00:00,Yes,3c38f1b0-2b97-49e2-a2d5-98dd4f2252b9
 Seymour Optometric Center,"25 New Haven Road, Seymour, CT 06483",Seymour,CT,06483,2026-09-29T17:27:33+00:00,Yes,7b924e99-97bf-4d27-b387-8727863a30ce
+Sight For Vision,"5206-A Rolling Road, Burke, VA 22015",Burke,VA,22015,2026-10-19T22:08:09+00:00,Yes,231059fa-f0da-4b35-9b91-6b839b37b787
 Sight MD Babylon,"500 West Main Street / Suite 210, Babylon, NY 11702",Babylon,NY,11702,2026-08-05T13:52:29+00:00,Yes,130b33fc-ef36-4e67-b1a9-66ece8910156
 SightMD Plainview,"100 Manetto Hill Road, Plainview, NY 11803",Plainview,NY,11803,2026-08-27T21:34:51+00:00,Yes,d74fc2dd-0d94-4e84-bf9f-79fc21adfa3b
+Siri Premier Eyecare,"724 Cambridge Marketplace Boulevard, Cambridge, MD 21613",Cambridge,MD,21613,2026-10-19T22:08:09+00:00,Yes,3b58e8a0-6ff2-4926-a710-6cc9f21457f4
 Sound Shore Vision Center,"271 Smithtown Boulevard, Nesconset, NY 11767",Nesconset,NY,11767,2026-07-30T13:44:50+00:00,Yes,b66f491c-a9be-405a-a239-75ee54a21bb5
 Specialty Eye - Adrian,"770 Riverside Avenue, Adrian, MI 49221",Adrian,MI,49221,2026-09-17T16:02:09+00:00,Yes,f7450b81-bae1-4623-a939-87ec24c7e02d
 Specialty Eye - Ann Arbor,"2350 East Stadium Boulevard, Ann Arbor, MI 48104",Ann Arbor,MI,48104,2026-09-17T16:02:09+00:00,Yes,17491e93-d66a-4f6f-b23a-ca8dfe6c1537
@@ -174,15 +249,19 @@ Specialty Eye - Chelsea,"1200 South Main Street, Chelsea, MI 48118",Chelsea,MI,4
 Specialty Eye - Jackson,"1116 West Ganson Street, Jackson, MI 49202",Jackson,MI,49202,2026-09-10T15:39:58+00:00,Yes,76b72096-bf0e-4cb8-bbdf-f3b85ac4b33d
 Specialty Eye - Lansing,"1515 Lake Lansing Road, Lansing, MI 48912",Lansing,MI,48912,2026-09-10T15:39:58+00:00,Yes,7adf68a5-7c21-4db3-bc46-ae4e94fd556c
 Specialty Eye - Toledo,"3439 Hill Avenue, Toledo, OH 43607",Toledo,OH,43607,2026-09-17T16:02:09+00:00,Yes,f37ebec4-a2a5-430e-ad44-5df163ee42d5
-SSM Health,"2850 O’Keeffe Avenue,, Sun Prairie, WI 53590",Sun Prairie,WI,53590,2026-07-24T13:24:06+00:00,Yes,9177dee6-c7f6-4011-a171-296aa4566298
+SSM Health,"2850 O’Keeffe Avenue, Sun Prairie, WI 53590",Sun Prairie,WI,53590,2026-07-24T13:24:06+00:00,Yes,9177dee6-c7f6-4011-a171-296aa4566298
 Stamford Ophthalmology,"1351 Washington Boulevard - Suite 101, Stamford, CT 06902",Stamford,CT,06902,2026-09-29T17:27:33+00:00,Yes,73068e34-f937-46f0-ae08-38c5108b8043
+Stuart Terry Eye Associates,"1100 N Main Ave, San Antonio, TX 78212",San Antonio,TX,78212,2026-10-19T22:08:09+00:00,Yes,f2bfd869-919d-41b4-a130-d5c1862cf57b
 Summit Health Management,"95 Madison Ave Floor 2, Morristown, NJ 07960",Morristown,NJ,07960,2026-07-31T13:50:30+00:00,Yes,a9e75807-d36b-4e3c-9c04-f38176c4a40d
 Temecula Eye Center Optometry,"41720 Winchester Road D, Temecula, CA 92590",Temecula,CA,92590,2026-08-28T21:38:28+00:00,Yes,ad8d1eed-e9b7-4b9b-a2e2-82a09e67094c
 The Eye Clinic,"1767 Imperial Blvd., Lake Charles, LA 70605",Lake Charles,LA,70605,2026-07-30T13:44:50+00:00,Yes,0919c645-a060-4f63-907f-c8e3f87bc937
+The Eye Clinic of New Jersey,"1095 Morris Avenue, Union, NJ 07083",Union,NJ,07083,2026-10-19T22:08:09+00:00,Yes,f8185219-0ada-48de-87db-1d6015196621
+The Eye Doctors Topeka,"2800 Southwest Wanamaker Road, Topeka, KS 66614",Topeka,KS,66614,2026-10-19T22:08:09+00:00,Yes,1eb5b114-c14b-44b0-b13e-a60c8c8f6337
 The Eye Institute,"2000 S Wheeling Ave / Suite 1010, Tulsa, OK 74104",Tulsa,OK,74104,2026-09-18T15:37:16+00:00,Yes,cd48f521-23c6-43f0-a4bc-1f465840af32
 Thomas Eye Group/Lithonia,"6000 Hillandale Drive, Lithonia, GA 30058",Lithonia,GA,30058,2026-09-17T16:02:09+00:00,Yes,d2b1e7fa-a74f-4bab-b26c-b3e2e40a0311
 Total Vision West Hollywood,"8205 Santa Monica Boulevard, West Hollywood, CA 90046",West Hollywood,CA,90046,2026-09-18T15:37:16+00:00,Yes,856ae962-24cd-454c-888c-6cd94dd274c5
 Tower Clock Eye Center,"1087 West Mason St., Green Bay, WI 54303",Green Bay,WI,54303,2026-07-24T13:24:06+00:00,Yes,9e778072-94e3-44b4-9964-e6de13cc4dc9
+Treasure Coast Eye Specialists Port St. Lucie,"514 SW Prima Vista Boulevard, Port Saint Lucie, FL 34983",Port Saint Lucie,FL,34983,2026-10-19T22:08:09+00:00,Yes,526ab1c0-0043-4c19-8f09-bc7f2a2b2c8d
 Triad Eye,"3615 Southeast Kentucky Street, Bartlesville, OK 74006",Bartlesville,OK,74006,2026-08-27T21:34:51+00:00,Yes,ca348d86-862c-4cb1-b9d4-29c5b3d57b4d
 Triad Eye,"1715 North Lynn Riggs Boulevard, Claremore, OK 74017",Claremore,OK,74017,2026-08-27T21:34:51+00:00,Yes,ae37e2e4-9041-4a7f-a759-c73edda96679
 Triad Eye,"63223 Oklahoma 10, Grove, OK 74344",Grove,OK,74344,2026-08-27T21:34:51+00:00,Yes,25af70cb-2674-42c7-baff-057087df90fc
@@ -195,6 +274,9 @@ True Vision Eye Care Morrisville,"102 Lower Shiloh Way
 #105, Morrisville, NC 27560",Morrisville,NC,27560,2026-08-22T12:25:34+00:00,Yes,28dbede9-c7b1-41d1-b141-dfc7e045c84f
 True Vision Eye Care Raleigh,"9101 Leesville Road Suite 133, Raleigh, NC 27613",Raleigh,NC,27613,2026-08-22T12:25:34+00:00,Yes,e7bde7dd-de1a-4fee-b7c8-352fa4bb025d
 Tulman Eye Group,"880 Crestmark Drive, Lithia Springs, GA 30122",Lithia Springs,GA,30122,2026-07-22T01:05:31+00:00,Yes,cc318f2b-70f0-43ea-a8cc-52acb6d55583
+UCLA Doris Stein Eye Research Center,"200 Stein Plaza, Floor One, Los Angeles, CA 90095",Los Angeles,CA,90095,2026-10-19T22:08:09+00:00,Yes,2105eda2-3701-41c9-8de8-3300cad75967
+UCLA Stein Eye Center Calabasas,"26585 Agoura Road, Ste 270, Calabasas, CA 91302",Calabasas,CA,91302,2026-10-19T22:08:09+00:00,Yes,e09d6225-6a7a-448b-9f75-000131359035
+UCLA Stein Eye Center Santa Monica,"1807 Wilshire Boulevard, Ste 203, Santa Monica, CA 90403",Santa Monica,CA,90403,2026-10-19T22:08:09+00:00,Yes,15daaf3c-1193-4c86-be1b-6c7cab6a5b11
 University Eye Associates,"8316 Medical Plaza Drive, Charlotte, NC 28262",Charlotte,NC,28262,2026-08-22T12:25:34+00:00,Yes,624c4a35-8918-4315-b38b-b805987df6c4
 University Eye Associates,"100 South Main Street, Davidson, NC 28036",Davidson,NC,28036,2026-09-12T14:48:55+00:00,Yes,56d469b6-ae05-4cab-8b12-9c8e655aa91a
 University of Michigan-West Ann Arbor,"380 Parkland Plaza, Ann Arbor, MI 48103",Ann Arbor,MI,48103,2026-08-27T21:34:51+00:00,Yes,c1c8ca99-da4d-4905-9963-9f6f1197d245
@@ -203,6 +285,7 @@ UofM-Flint/Grand Blanc,"3181 East Grand Blanc Road, Grand Blanc, MI 48439",Grand
 Urban Optics Optometric Center,"1114 State Street, Santa Barbara, CA 93101",Santa Barbara,CA,93101,2026-09-17T16:02:09+00:00,Yes,c8440682-283b-4f04-bd71-9d81bf6fa509
 UT Medicine Mitchel and Shannon Wong Eye Institute,"4900 Mueller Boulevard, Austin, TX 78723",Austin,TX,78723,2026-09-09T15:44:51+00:00,Yes,2e53888c-fbe6-4cb1-a2e8-ce32693f9fd8
 UW Health Eye Care,"1 South Park, Madison, WI 53715",Madison,WI,53715,2026-07-24T13:24:06+00:00,Yes,3ae4a09c-032b-4c0b-9304-f9243e3a25ce
+Valencia Eyecare Optometry,"25172 Rye Canyon Road, Santa Clarita, CA 91355",Santa Clarita,CA,91355,2026-10-19T22:08:09+00:00,Yes,e105b95c-d1ff-42f0-bf63-bc1888cc3223
 Vansuch Vision,"315 East Katella Avenue, Orange, CA 92867",Orange,CA,92867,2026-09-09T15:44:51+00:00,Yes,3e5e3430-3eb3-4edd-88f6-efbaf4b394b8
 Virginia Eyecare Center,"9314 Old Keene Mill Road, Burke, VA 22015",Burke,VA,22015,2026-09-17T16:02:09+00:00,Yes,83d89b8c-caa9-4cc8-bb98-19d1929ea84f
 Vision Eye Group / Warner Robins,"151 South Houston Lake Road  Suite 190, Warner Robins, GA 31088",Warner Robins,GA,31088,2026-08-21T12:33:35+00:00,Yes,e41932b6-a92d-470a-9235-658bedeb2995
@@ -215,8 +298,10 @@ Vistar Eye Center,"3320 Franklin Road SW, Roanoke, VA 24014",Roanoke,VA,24014,20
 Vistar Eye Center - Botetourt,"70 Summerfield Court, Roanoke, VA 24019",Roanoke,VA,24019,2026-08-08T12:34:16+00:00,Yes,b1242083-ce47-4613-ab04-0849b3a0ae40
 Washington Eye Doctors,"5454 Wisconsin Avenue, Chevy Chase, MD 20815",Chevy Chase,MD,20815,2026-08-01T13:05:04+00:00,Yes,e3959d6f-f4bd-4c68-9aa5-d9f9b13ba35a
 Weill Cornell,"1305 York Ave / 11th Floor, New York, NY 10021",New York,NY,10021,2026-07-30T13:44:50+00:00,Yes,f45f5d97-762d-4739-8cd5-317b1d05117b
+West Broward Eyecare Associates,"7822 North University Drive, Tamarac, FL 33321",Tamarac,FL,33321,2026-10-19T22:08:09+00:00,Yes,17c269e5-4b95-4c20-8832-ab2c1f6e2b39
 West Georgia Eye Care Center,"6600 Whittlesey Blvd / Building A, Columbus, GA 31909",Columbus,GA,31909,2026-09-08T15:49:00+00:00,Yes,080a865e-91e0-4244-9360-f1dcd5f20a8e
 Western University Eye Care Institute,"309 East 2nd Street, Pomona, CA 91766",Pomona,CA,91766,2026-08-27T21:34:51+00:00,Yes,aa4a919e-a68e-4a19-84fd-de942d5fec9c
+Wichita Family Vision,"437 North Tyler Road, Wichita, KS 67212",Wichita,KS,67212,2026-10-19T22:08:09+00:00,Yes,4e172b99-1743-4b6a-9b76-fb8061a898b8
 Wilmington Eye,"1176 East Cutlar Crossing, Leland, NC 28451",Leland,NC,28451,2026-08-27T21:34:51+00:00,Yes,7257b914-ce14-4a91-b35b-55455d94712b
 Wilmington Eye,"9020 Senca Drive, Wilmington, NC 28411",Wilmington,NC,28411,2026-08-27T21:34:51+00:00,Yes,e3cb8ad6-cb75-480e-8113-e7e9114b9f45
 WV Eye Consultants,"501 Summers Street, Charleston, WV 25301",Charleston,WV,25301,2026-09-02T15:47:33+00:00,No,63eedb97-8bca-49fb-8716-9259082b4535

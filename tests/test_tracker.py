@@ -185,6 +185,68 @@ class MonitorValidationTests(unittest.TestCase):
         self.assertEqual(meta["supplemental_query_count"], 2)
         self.assertIn("supplemental", current)
 
+    def test_capped_supplemental_search_retries_at_smaller_radius(self):
+        conn = sqlite3.connect(":memory:")
+        monitor.init_db(conn)
+        capped_facilities = [
+            {"id": f"capped-{index}", "name": f"Capped {index}"}
+            for index in range(monitor.API_RESULT_LIMIT)
+        ]
+        supplemental_place = {
+            "query": "coverage Dense, NY 10007",
+            "text": "10007",
+            "placeId": "dense-place",
+            "coordinates": (40.71, -74.00),
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            baseline = Path(directory) / "baseline.json"
+            targets = Path(directory) / "targets.json"
+            baseline.write_text(
+                json.dumps(
+                    {
+                        "placeRows": [
+                            {"query": "Dense, NY", "text": "Dense, NY", "placeId": "base-place"}
+                        ]
+                    }
+                )
+            )
+            with (
+                patch.object(
+                    monitor,
+                    "query_epioxa",
+                    return_value={"facilities": capped_facilities},
+                ),
+                patch.object(
+                    monitor,
+                    "query_epioxa_by_place_id",
+                    side_effect=[
+                        {"facilities": capped_facilities},
+                        {"facilities": [{"id": "resolved-detection"}]},
+                        {"facilities": [{"id": "resolved-treatment"}]},
+                    ],
+                ) as targeted_query,
+                patch.object(
+                    monitor,
+                    "select_supplemental_places",
+                    return_value=[supplemental_place],
+                ),
+                patch.object(
+                    monitor,
+                    "targeted_recheck_missing",
+                    return_value=([], []),
+                ),
+            ):
+                _, _, query_results, expected, meta = monitor.collect_current_facilities(
+                    conn, baseline, 0, target_places_path=targets
+                )
+
+        self.assertEqual(targeted_query.call_args_list[0].args[2], 75)
+        self.assertEqual(targeted_query.call_args_list[1].args[2], 50)
+        self.assertEqual(len(query_results), expected)
+        self.assertEqual(expected, 5)
+        self.assertEqual(meta["supplemental_query_count"], 3)
+        self.assertEqual(meta["unresolved_saturation"], [])
+
 
 class DashboardTests(unittest.TestCase):
     def test_week_start_is_monday_in_utc(self):

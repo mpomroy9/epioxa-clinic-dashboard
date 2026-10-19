@@ -46,9 +46,10 @@ within 85% to 125% of the previous live clinic count. Suspicious pulls are
 recorded as failed and are not committed by the hosted workflow.
 
 Broad searches that hit the Epioxa API's 50-result ceiling trigger additional
-75-mile searches from spatially distributed historical clinic locations. A
-run is rejected if any of those supplemental coverage searches also reaches
-the ceiling, because that result set cannot be treated as exhaustive.
+searches from spatially distributed historical clinic locations. Supplemental
+searches start at 75 miles and retry at 50, 25, and 10 miles when capped. A run
+is rejected only if the smallest local search still reaches the ceiling,
+because that result set cannot be treated as exhaustive.
 
 Use `--allow-suspicious-counts` only after manually validating a legitimate
 large change in the Epioxa finder. The ratios can be configured with

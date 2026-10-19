@@ -23,7 +23,7 @@ API_COORDS_TO_ZIP = "https://api.find-a-doctor.epioxa.com/geocode/coords-to-zip"
 SOURCE = "https://find-a-doctor.epioxa.com/"
 CLINIC_TYPES = ("treatment", "detection")
 API_RESULT_LIMIT = 50
-SUPPLEMENTAL_RADIUS_MILES = 75
+SUPPLEMENTAL_RADII_MILES = (75, 50, 25, 10)
 SUPPLEMENTAL_SEED_SPACING_MILES = 50
 DEFAULT_MINIMUM_LIVE_RATIO = 0.85
 DEFAULT_MAXIMUM_LIVE_RATIO = 1.25
@@ -600,34 +600,40 @@ def collect_current_facilities(
                 excluded_place_ids={place["placeId"] for place in place_rows},
             )
             supplemental_seed_count = len(supplemental_places)
-            expected_query_pairs += supplemental_seed_count * len(saturated_types)
             for place in supplemental_places:
                 for clinic_type in sorted(saturated_types):
-                    body = query_epioxa_by_place_id(
-                        place["placeId"], clinic_type, SUPPLEMENTAL_RADIUS_MILES
-                    )
-                    current = body.get("facilities", [])
-                    supplemental_count += 1
-                    capped = len(current) >= API_RESULT_LIMIT
-                    if capped:
+                    resolved = False
+                    for radius in SUPPLEMENTAL_RADII_MILES:
+                        body = query_epioxa_by_place_id(
+                            place["placeId"], clinic_type, radius
+                        )
+                        current = body.get("facilities", [])
+                        supplemental_count += 1
+                        expected_query_pairs += 1
+                        capped = len(current) >= API_RESULT_LIMIT
+                        query_results.append(
+                            (
+                                place["query"],
+                                place["text"],
+                                place["placeId"],
+                                clinic_type,
+                                len(current),
+                                f"coverage-{'capped' if capped else 'ok'}-{radius}mi",
+                                checked_at,
+                            )
+                        )
+                        for facility in current:
+                            facilities[facility["id"]] = facility
+                        if delay_seconds:
+                            time.sleep(delay_seconds)
+                        if not capped:
+                            resolved = True
+                            break
+                    if not resolved:
                         unresolved_saturation.append(
-                            f"{place['query']} / {clinic_type}"
+                            f"{place['query']} / {clinic_type} / "
+                            f"{SUPPLEMENTAL_RADII_MILES[-1]}mi"
                         )
-                    query_results.append(
-                        (
-                            place["query"],
-                            place["text"],
-                            place["placeId"],
-                            clinic_type,
-                            len(current),
-                            "coverage-capped" if capped else "coverage-ok",
-                            checked_at,
-                        )
-                    )
-                    for facility in current:
-                        facilities[facility["id"]] = facility
-                    if delay_seconds:
-                        time.sleep(delay_seconds)
 
         found_targeted, target_notes = targeted_recheck_missing(conn, facilities, target_places, delay_seconds)
         query_notes.insert(
@@ -690,9 +696,11 @@ def validate_collection(
     if current_count <= 0:
         errors.append("the current pull returned no facilities")
     if unresolved_saturation:
+        examples = ", ".join(unresolved_saturation[:3])
         errors.append(
             f"{len(unresolved_saturation)} supplemental coverage queries still hit "
-            f"the {API_RESULT_LIMIT}-result API ceiling"
+            f"the {API_RESULT_LIMIT}-result API ceiling at the smallest radius: "
+            f"{examples}"
         )
     if previous_count:
         ratio = current_count / previous_count

@@ -1,0 +1,4 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Duncan Family Eye Care,"3590 North Highway 81, Duncan, OK 73533",Duncan,OK,73533,No,Yes,Yes,2026-10-29T17:53:28+00:00,2026-10-29T17:53:28+00:00,+15804224954,https://www.duncanfamilyeyecare.com/,Jody Atchley; Jeffrey Edwards,baf09a2d-e159-4538-8c8d-7586454288d2
+Eyewell,"500 Commonwealth Avenue, Boston, MA 02215",Boston,MA,02215,No,Yes,Yes,2026-10-29T17:53:28+00:00,2026-10-29T17:53:28+00:00,+12296583664,www.myeyewell.com,"Kristen Brown OD, FAAO, Diplomate AAO CCLRT",dd677d13-d9da-4218-8b39-25b5c30ef76c
+Gold Eye Clinic,"501 E. Kolstad St, Palestine, TX 75801",Palestine,TX,75801,Yes,Yes,Yes,2026-10-29T17:53:28+00:00,2026-10-29T17:53:28+00:00,+19034818569,https://goldeyeclinic.com/,,0838890e-c4af-4a35-b96d-176176c4c2b8

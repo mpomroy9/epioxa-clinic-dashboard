@@ -1,0 +1,3 @@
+Clinic,Address,City,State,Zip,Treatment center,Detection center,Currently live in latest run,First seen by monitor,Last seen by monitor,Phone,Website,Providers,Epioxa facility ID
+Chris Cross,"109 Carroll Street, Fort Worth, TX 76107",Fort Worth,TX,76107,No,Yes,Yes,2026-10-31T16:39:44+00:00,2026-10-31T16:39:44+00:00,+18175373822,https://www.fortworthoptometryco.com/,Chris Cros,c09b8385-b7b3-482b-8a76-60c18aa99079
+Virginia Eye Consultants,"241 Corporate Blvd, Norfolk, VA 23502",Norfolk,VA,23502,Yes,No,Yes,2026-10-31T16:39:44+00:00,2026-10-31T16:39:44+00:00,+17574274337,https://www.virginiaeyeconsultants.com/our-locations/norfolk/?utm_source=gmb&utm_medium=yext,Albert Cheung MD; John Sheppard MD; Cameron Paladino MD; Rachel Schneider MD,3bd20524-7e79-4d10-84b2-ff90defd4b82
